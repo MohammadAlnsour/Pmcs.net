@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{45C526BE-AE7C-44A1-B0EE-91C67B10EE6C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>pmcs.Notifications</RootNamespace>
+    <AssemblyName>pmcs.Notifications</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Config\Config.cs" />
+    <Compile Include="Config\EmailsComposor.cs" />
+    <Compile Include="Config\TemplateReplacer.cs" />
+    <Compile Include="Email\MailMessageConfig.cs" />
+    <Compile Include="Email\MailMessageStatus.cs" />
+    <Compile Include="Email\SmtpSender.cs" />
+    <Compile Include="INotifiable.cs" />
+    <Compile Include="Notification.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="System\NotificationTemplates.cs" />
+    <Compile Include="System\SystemNotificationsComposer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\pmcs.Core\pmcs.Core.csproj">
+      <Project>{1e017752-b05d-4f3b-a038-4098f9e6d923}</Project>
+      <Name>pmcs.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\pmcs.DB\pmcs.DB.csproj">
+      <Project>{c44f8007-9915-4034-a49a-939499d1d26a}</Project>
+      <Name>pmcs.DB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\pmcs.Model\pmcs.Models.csproj">
+      <Project>{a21bd2cf-e709-4197-a858-98d89ffebbd1}</Project>
+      <Name>pmcs.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\pmcs.Repository\pmcs.Repository.csproj">
+      <Project>{d6de14a4-ba32-482b-9634-4b383990abf8}</Project>
+      <Name>pmcs.Repository</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="SMS\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

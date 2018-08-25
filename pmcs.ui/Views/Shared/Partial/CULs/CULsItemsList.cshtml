@@ -1,0 +1,69 @@
+﻿@using pmcs.Model.Contracts;
+@model IEnumerable<CUL>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <td>
+                Id
+            </td>
+            <td>
+                Code
+            </td>
+            <td>
+                Description
+            </td>
+            @*<td>
+                    CUL Group
+                </td>*@
+            <td>
+                Discount
+            </td>
+            <td>
+                Unit Price
+            </td>
+            <td>
+                Unit of Measure
+            </td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var CUL in Model)
+        {
+            <tr>
+                <td>
+                    @*<a href="@Url.Action("CULDetails", "Contracts", new { id = CUL.CULId })">*@
+                    @CUL.CULId
+                    @*</a>*@
+                </td>
+                <td>
+                    @*<a href="@Url.Action("CULDetails", "Contracts", new { id = CUL.Code })">*@
+                    @CUL.Code
+                    @*</a>*@
+                </td>
+                <td>
+                    @CUL.Description
+                </td>
+                @*<td>
+                        @CUL.CULGroupName
+                    </td>*@
+                <td>
+                    @CUL.Discount
+                </td>
+                <td>
+                    @CUL.UnitPrice
+                </td>
+                <td>
+                    @CUL.UnitOfMeasure
+                </td>
+                <td>
+                    <button class="btn btn-primary btn-xs" id="BtnEditCUL_@CUL.CULId">
+                        <i class="fa fa-refresh"></i>
+                        Edit CUL
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

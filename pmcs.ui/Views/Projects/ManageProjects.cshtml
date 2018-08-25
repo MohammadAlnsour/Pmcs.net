@@ -1,0 +1,123 @@
+﻿@using pmcs.Model.Contracts
+@using System.Web.Optimization
+@model IEnumerable<Project>
+@{
+    ViewBag.Title = "PMCS v1.2 - Projects List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Styles.Render("~/bundles/DataTableCss")
+<div class="row">
+    <ol class="breadcrumb">
+        <li><a href="#"><em class="fa fa-home"></em></a></li>
+        <li>Projects Management</li>
+        <li class="active">Projects List</li>
+    </ol>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Projects List</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default ">
+            <div class="panel-heading">
+                Manage projects
+                <span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span>
+            </div>
+            <div class="panel-body timeline-container">
+                <ul class="timeline timeline-horizontal">
+                    <li class="timeline-item">
+                        <div class="timeline-badge success"><i class="glyphicon glyphicon-check"></i></div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4 class="timeline-title">Step 1 : Create Project</h4>
+                            </div>
+                            <div class="timeline-body">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="timeline-item">
+                        <div class="timeline-badge"><i class="glyphicon glyphicon-check"></i></div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4 class="timeline-title"><a href="@Url.Action("ProjectScheduler","Projects")">Step 2 : Schedule Tasks</a></h4>
+                            </div>
+                            <div class="timeline-body">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="timeline-item">
+                        <div class="timeline-badge"><i class="glyphicon glyphicon-check"></i></div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4 class="timeline-title"><a href="@Url.Action("ProjectsStatus","Projects")">Step 3 : Tasks Status</a></h4>
+                            </div>
+                            <div class="timeline-body">
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+                <div id="DivAddProject"></div>
+                <br />
+                <div id="divProjectsList">
+                    <table id="TblProjects" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <td>
+                                    Project Code
+                                </td>
+                                <td>
+                                    Project Name
+                                </td>
+                                <td>
+                                    Short Name
+                                </td>
+                                <td>
+                                    Site Name
+                                </td>
+                                <td></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var project in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <a href="@Url.Action("ProjectDetails", "Projects", new { id = project.ProjectId })">
+                                            @project.ProjectCode
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="@Url.Action("ProjectDetails", "Projects", new { id = project.ProjectId })">
+                                            @project.ProjectName
+                                        </a>
+                                    </td>
+                                    <td>
+                                        @project.ProjectShortName
+                                    </td>
+                                    <td>
+                                        @project.SiteName
+                                    </td>
+                                    <td>
+                                        <button id="BtnEditProject_@project.ProjectId" class="btn btn-primary btn-xs"><i class="fa fa-pencil-square"></i> Edit Project</button>
+                                        <a class="btn btn-info btn-xs" href="@Url.Action("ProjectDetails", "Projects", new { id =project.ProjectId })"> <i class="fa fa-eye"></i> View Details</a>
+                                        @*<button id="BtnImportPlan_@project.ProjectId" class="btn btn-warning btn-xs"><i class="fa fa-download"></i> Import schedule from template</button>*@
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="HiddenEditProjectId" />
+
+@section customScripts {
+    @Scripts.Render("~/bundles/DataTable")
+    <script type="text/javascript" src="/Scripts/App/ProjectManagement/ProjectsList.jsx"></script>
+}
+

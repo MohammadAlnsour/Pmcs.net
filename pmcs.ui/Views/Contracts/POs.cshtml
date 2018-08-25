@@ -1,0 +1,123 @@
+﻿@using pmcs.Model.Contracts;
+@model IEnumerable<POs>
+@{
+    ViewBag.Title = "PMCS v1.2 - Purchase Orders List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <ol class="breadcrumb">
+        <li><a href="#"><em class="fa fa-home"></em></a></li>
+        <li>Contracts</li>
+        <li class="active">Purchase Orders List</li>
+    </ol>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Purchase Orders List</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default ">
+            <div class="panel-heading">
+                Manage Purchase Orders List
+                <span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span>
+            </div>
+            <div class="panel-body timeline-container">
+                <div id="DivEditPO"></div>
+                <div id="DivSearchPO"></div>
+                <div id="DivAddPO"></div>
+                <br />
+                <div id="DivPOList">
+                    <table class="table table-striped datatable">
+                        <thead>
+                            <tr>
+                                <th>
+                                    PO Number
+                                </th>
+                                @*<td>
+                                    PO Gross
+                                </td>*@
+                                <th>
+                                    Project
+                                </th>
+                                <th>
+                                    Contractor
+                                </th>
+                                <th>
+                                    PO Date
+                                </th>
+                                <th>
+                                    CUL Group
+                                </th>
+                                <th>
+                                    PO Status
+                                </th>
+                                <th>
+                                    Task / Milestone
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var PO in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <a href="@Url.Action("POsDetails", "Contracts", new { id = PO.PoId })#jobs">
+                                            @PO.PONumber
+                                        </a>
+                                    </td>
+                                    @*<td>
+                                        <a href="@Url.Action("POsDetails", "Contracts", new { id = PO.PoId })#jobs">
+                                            @PO.PoGross
+                                        </a>
+                                    </td>*@
+                                    <td>
+                                        @PO.ProjectName
+                                    </td>
+                                    <td>
+                                        @PO.ContractorName
+                                    </td>
+                                    <td>
+                                        @(PO.PODate != null ? ((DateTime)PO.PODate).ToShortDateString() : "")
+                                    </td>
+                                    <td>
+                                        @PO.CULGroupName
+                                    </td>
+                                    <td>
+                                        @PO.POStatusName
+                                    </td>
+                                    <td>
+                                        @PO.ProjectTaskName
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-primary btn-xs" id="BtnEditPO_@PO.PoId">
+                                            <i class="fa fa-refresh"></i>
+                                            Edit PO
+                                        </button>
+                                        &nbsp;
+                                        <button class="btn btn-warning btn-xs" id="BtnShowJobs_@PO.PoId">
+                                            <i class="fa fa-cubes"></i>
+                                            PO Jobs
+                                        </button>
+                                        &nbsp;
+                                        <button class="btn btn-danger btn-xs" id="BtnShowBOQ_@PO.PoId">
+                                            <i class="fa fa-cubes"></i>
+                                            BoQs
+                                        </button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="HiddenPOId" name="HiddenPOId" />
+@section customScripts {
+    <script type="text/javascript" src="~/Scripts/App/POs/POsList.jsx"></script>
+}

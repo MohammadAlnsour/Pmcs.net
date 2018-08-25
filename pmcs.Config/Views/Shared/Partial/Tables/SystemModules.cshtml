@@ -1,0 +1,45 @@
+﻿@model IEnumerable<pmcs.Model.SystemModule>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Used</th>
+            <th>Change status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var module in Model)
+        {
+            <tr>
+                <td>@module.ModuleId</td>
+                <td>@module.ModuleName</td>
+                <td>
+                    @if (module.IsActive)
+                    {
+                        <a class="btn btn-success">
+                            <i class="ti-check"></i>Activated
+                        </a>
+                    }
+                    else
+                    {
+                        <a class="btn btn-danger">
+                            <i class="ti-close"></i>&nbsp;Deactivated
+                        </a>
+                    }
+                </td>
+                <td>
+                    @if (module.IsActive)
+                    {
+                        <button id="BtnDeactivate_@module.ModuleId" class="btn btn-danger btn-xs"><i class="ti-cloud-down"></i>Deactivate</button>
+                    }
+                    else
+                    {
+                        <button id="BtnActivate_@module.ModuleId" class="btn btn-primary btn-xs"><i class="ti-cloud-up"></i>Activate</button>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,40 @@
+﻿@using System.Web.Optimization;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/bundles/BaseStyles")
+    @Styles.Render("~/bundles/DataTableCss")
+    @RenderSection("CustomStyles", false)
+    <!--Custom Font-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    @Html.Partial("~/Views/Shared/Partial/TopbarNavMenu.cshtml")
+    @Html.Partial("~/Views/Shared/Partial/SidebarMenu.cshtml")
+    <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+        @RenderBody()
+        @Html.Partial("~/Views/Shared/Partial/Footer.cshtml")
+        @Html.Partial("~/Views/Shared/Partial/LoadingAjax.cshtml")
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react-dom.js"></script>
+    @Scripts.Render("~/bundles/JQuery")
+    @Scripts.Render("~/bundles/Bootstrap")
+    @Scripts.Render("~/bundles/DataTable")
+    @Scripts.Render("~/bundles/CommonScript")
+    @RenderSection("customScripts", false)
+    <script type="text/javascript" src="/Scripts/App/Shared/TopNotifications.jsx"></script>
+
+</body>
+</html>

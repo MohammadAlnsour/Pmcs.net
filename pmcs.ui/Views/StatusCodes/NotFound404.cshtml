@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "Page Not Found 404";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="panel panel-default ">
+            <div class="panel-heading">
+                404 Page not found
+            </div>
+            <div class="panel-body timeline-container">
+                <div class="error-page">
+                    <div class="">
+                        <h3><i class="fa fa-warning text-yellow"></i> Oops! Page Not Found.</h3>
+                        <form action="#" method="post" class="search-form">
+                            <div class="input-group">
+                                <input type="text" name="search" class="form-control" placeholder="Search" required="">
+
+                                <div class="input-group-btn">
+                                    <button type="submit" name="submit" class="btn btn-warning btn-flat">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <br />
+                    <p>
+                        We could not find the page you were looking for.
+                        Meanwhile, you may return to dashboard or try using the search form.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C44F8007-9915-4034-A49A-939499D1D26A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>pmcs.DB</RootNamespace>
+    <AssemblyName>pmcs.DB</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActivityStatu.cs" />
+    <Compile Include="ActivityType.cs" />
+    <Compile Include="AsBuilt.cs" />
+    <Compile Include="AzimuthType.cs" />
+    <Compile Include="BOQModelType.cs" />
+    <Compile Include="BOQsBudget.cs" />
+    <Compile Include="Budget.cs" />
+    <Compile Include="CapitalizationMilestone.cs" />
+    <Compile Include="ChangeApprovalWorkflow.cs" />
+    <Compile Include="ChangeRequest.cs" />
+    <Compile Include="ChangeType.cs" />
+    <Compile Include="ChangeWorkflowStage.cs" />
+    <Compile Include="Contractor.cs" />
+    <Compile Include="CUL.cs" />
+    <Compile Include="CULGroup.cs" />
+    <Compile Include="CULGroupCUL.cs" />
+    <Compile Include="Currency.cs" />
+    <Compile Include="DBEntitiesBase.cs" />
+    <Compile Include="Department.cs" />
+    <Compile Include="DesignBOQ.cs" />
+    <Compile Include="DismantleRequest.cs" />
+    <Compile Include="District.cs" />
+    <Compile Include="Document.cs" />
+    <Compile Include="DocumentManagementWorkflowStage.cs" />
+    <Compile Include="DocumentReply.cs" />
+    <Compile Include="Element.cs" />
+    <Compile Include="ElementsDiscount.cs" />
+    <Compile Include="ElementsType.cs" />
+    <Compile Include="EmailServerSetting.cs" />
+    <Compile Include="EmailsTemplate.cs" />
+    <Compile Include="ErrorLog.cs" />
+    <Compile Include="EventLog.cs" />
+    <Compile Include="ExpensesType.cs" />
+    <Compile Include="FinancialInvoiceType.cs" />
+    <Compile Include="Governorate.cs" />
+    <Compile Include="InventoriesCategory.cs" />
+    <Compile Include="Invoice.cs" />
+    <Compile Include="InvoicesApprovalWorkflow.cs" />
+    <Compile Include="InvoicesClassificationType.cs" />
+    <Compile Include="InvoiceWorkflowStage.cs" />
+    <Compile Include="Job.cs" />
+    <Compile Include="JobsExpens.cs" />
+    <Compile Include="JobsOIL.cs" />
+    <Compile Include="JobsType.cs" />
+    <Compile Include="LeaseContract.cs" />
+    <Compile Include="LeasePaymentTransaction.cs" />
+    <Compile Include="LeasePaymentTransactionApprovalWorkflow.cs" />
+    <Compile Include="Manufacturer.cs" />
+    <Compile Include="NotifiactionsType.cs" />
+    <Compile Include="OperationsCenter.cs" />
+    <Compile Include="PAT.cs" />
+    <Compile Include="PATStatusType.cs" />
+    <Compile Include="PATSupervisor.cs" />
+    <Compile Include="PaymentMethod.cs" />
+    <Compile Include="PaymentsMilestoneType.cs" />
+    <Compile Include="PmcsDbContext.cs" />
+    <Compile Include="POClassification.cs" />
+    <Compile Include="POPayableType.cs" />
+    <Compile Include="POs.cs" />
+    <Compile Include="POsClassification.cs" />
+    <Compile Include="POsPayableType.cs" />
+    <Compile Include="POType.cs" />
+    <Compile Include="PowerType.cs" />
+    <Compile Include="Project.cs" />
+    <Compile Include="ProjectTemplate.cs" />
+    <Compile Include="ProjectTemplateTask.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Role.cs" />
+    <Compile Include="RolesModulesMapping.cs" />
+    <Compile Include="ShelterType.cs" />
+    <Compile Include="Site.cs" />
+    <Compile Include="SiteAccessibility.cs" />
+    <Compile Include="SiteInventory.cs" />
+    <Compile Include="SiteInventoryItem.cs" />
+    <Compile Include="SitesAntennaDetail.cs" />
+    <Compile Include="SitesAreasName.cs" />
+    <Compile Include="SitesConfiguration.cs" />
+    <Compile Include="SitesContact.cs" />
+    <Compile Include="SitesFileAttachment.cs" />
+    <Compile Include="SitesLeaser.cs" />
+    <Compile Include="SitesModelsType.cs" />
+    <Compile Include="SitesOperation.cs" />
+    <Compile Include="SitesOwner.cs" />
+    <Compile Include="SitesOwnersPaymentsAccount.cs" />
+    <Compile Include="SitesStructuresType.cs" />
+    <Compile Include="SitesType.cs" />
+    <Compile Include="StructuresType.cs" />
+    <Compile Include="SystemModule.cs" />
+    <Compile Include="SystemView.cs" />
+    <Compile Include="Task.cs" />
+    <Compile Include="Ticket.cs" />
+    <Compile Include="TicketsDiscussion.cs" />
+    <Compile Include="TicketsHistory.cs" />
+    <Compile Include="TicketsModule.cs" />
+    <Compile Include="UsersAccount.cs" />
+    <Compile Include="UsersNotification.cs" />
+    <Compile Include="UsersRole.cs" />
+    <Compile Include="Vendor.cs" />
+    <Compile Include="WorkflowAction.cs" />
+    <Compile Include="WorkflowRejectionReason.cs" />
+    <Compile Include="WorkflowStage.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+    <Compile Include="PmcsDbContext.StoredProcedures.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

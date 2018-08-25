@@ -1,0 +1,114 @@
+﻿@using pmcs.Model.ViewModels
+@model InvoiceWorkflowActionViewModel
+@{
+    ViewBag.Title = "PMCS v1.2 - Invoice Workflow Action";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <ol class="breadcrumb">
+        <li><a href="#"><em class="fa fa-home"></em></a></li>
+        <li>Financial Management</li>
+        <li>Invoices</li>
+        <li class="active">Invoice Workflow Action</li>
+    </ol>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Invoice Workflow Action</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default ">
+            <div class="panel-heading">
+                Invoice - @Model.Invoice.InvoiceNumber
+                <span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span>
+            </div>
+            <div class="panel-body timeline-container">
+                <div id="DivFilterInvoiceWorkflow"></div>
+
+                <br />
+                <div id="DivInvoiceWorkflowContainer" class="responsive-table">
+                    <table id="TableWorkflows" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <td>
+                                    Invoice Number
+                                </td>
+                                <td>
+                                    Stage
+                                </td>
+                                <td>
+                                    Received date
+                                </td>
+                                <td>
+                                    Processed date
+                                </td>
+                                <td>
+                                    Owner name
+                                </td>
+                                <td>
+                                    Status
+                                </td>
+                                <td>
+                                    Notes
+                                </td>
+                                <td></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    @Model.InvoiceWorkflow.InvoiceNumber
+                                </td>
+                                <td>
+                                    @Model.InvoiceWorkflow.StageName
+                                </td>
+                                <td>
+                                    @Model.InvoiceWorkflow.ReceivedDateString
+                                </td>
+                                <td>
+                                    @(Model.InvoiceWorkflow.ProcessedDate != null ? ((DateTime)Model.InvoiceWorkflow.ProcessedDate).ToShortDateString() : "")
+                                </td>
+                                <td>
+                                    @Model.InvoiceWorkflow.OwnerName
+                                </td>
+                                <td>
+                                    @Model.InvoiceWorkflow.StatusName
+                                </td>
+                                <td>
+                                    @Model.InvoiceWorkflow.Remarks
+                                </td>
+                                <td>
+                                    @if (!Model.InvoiceWorkflow.IsFinished)
+                                    {
+                                        <button class="btn btn-primary btn-xs" id="BtnApproveRejectWorkflow_@Model.InvoiceWorkflow.Id">
+                                            <i class="fa fa-check-square"></i>
+                                            Action
+                                        </button>
+                                    }
+                                    <button id="BtnWorkflow_@Model.InvoiceWorkflow.Id" class="btn btn-warning btn-xs">
+                                        <i class="fa fa-sitemap"></i>
+                                        View Workflow
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="divInvoiceWorkflowViewerContainer"></div>
+<div id="divPaymentsWorkflowAction"></div>
+<input type="hidden" id="HiddenEditInvoiceId" value="@Model.Invoice.InvoiceId" />
+<input type="hidden" id="HiddenWorkflowId" value="@Model.InvoiceWorkflow.Id" />
+<input type="hidden" id="HiddenInvoiceId" value="@Model.Invoice.InvoiceId" />
+
+@section customScripts {
+    <script type="text/javascript" src="/Scripts/App/Financial/InvoiceWorkflowAction.jsx"></script>
+    <script type="text/javascript" src="/Scripts/App/Financial/InvoiceWorkflowViewerAction.jsx"></script>
+}

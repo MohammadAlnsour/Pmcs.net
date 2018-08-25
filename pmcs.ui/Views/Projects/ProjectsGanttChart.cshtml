@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "PMCS v1.2 - Projects Calendar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section CustomStyles {
+    <link href="~/Contents/css/dhtmlxgantt_material.css" rel="stylesheet" />
+}
+
+
+<div class="row">
+    <ol class="breadcrumb">
+        <li><a href="#"><em class="fa fa-home"></em></a></li>
+        <li>Projects Management</li>
+        <li class="active">Projects Gantt Charts</li>
+    </ol>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Gantt Charts</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default ">
+            <div class="panel-heading">
+                Project Gantt Charts
+                <span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span>
+            </div>
+            <div class="panel-body timeline-container">
+                <div id="DivFilterProjects"></div>
+                <div id="DivProjectGanttChart"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="HiddenGanttRendered" />
+
+@System.Web.Optimization.Scripts.Render("~/bundles/dhtmlxgantt")
+@section customScripts {
+    <script type="text/javascript" src="/Scripts/App/ProjectManagement/ProjectsGanttChart.jsx"></script>
+}

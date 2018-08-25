@@ -1,0 +1,69 @@
+﻿<div class="sidebar" data-background-color="white" data-active-color="danger">
+    <!--
+        Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
+        Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
+    -->
+    <div class="sidebar-wrapper">
+        <div class="logo">
+            <a href="" class="simple-text">
+                PMCS V1.1
+            </a>
+        </div>
+        <ul class="nav">
+            <li class="@ViewData["dashboardPage"]">
+                <a href="@Url.Action("Index", "Home")">
+                    <i class="ti-panel"></i>
+                    <p>Dashboard</p>
+                </a>
+            </li>
+            <li class="@ViewData["modulesPage"]">
+                <a href="@Url.Action("Index", "SystemModules")">
+                    <i class="ti-view-grid"></i>
+                    <p>System Modules</p>
+                </a>
+            </li>
+            <li class="@ViewData["RolesPage"]">
+                <a href="@Url.Action("Index", "SystemRoles")">
+                    <i class="ti-layers-alt"></i>
+                    <p>Users Roles</p>
+                </a>
+            </li>
+            <li class="@ViewData["accountsPage"]">
+                <a href="@Url.Action("Index", "UsersAccounts")">
+                    <i class="ti-user"></i>
+                    <p>Users Accounts</p>
+                </a>
+            </li>
+            <li class="@ViewData["lookupPage"]">
+                <a href="@Url.Action("Index", "LookupTables")">
+                    <i class="ti-eye"></i>
+                    <p>Lookup tables</p>
+                </a>
+            </li>
+            <li class="@ViewData["emailPage"]">
+                <a href="@Url.Action("Index", "EmailConfiguration")">
+                    <i class="ti-email"></i>
+                    <p>Email Configuration</p>
+                </a>
+            </li>
+            <li class="@ViewData["notificationsPage"]">
+                <a href="@Url.Action("Index", "NotificationsConfiguration")">
+                    <i class="ti-bell"></i>
+                    <p>Notifications</p>
+                </a>
+            </li>
+            <li class="@ViewData["formsBuilder"]">
+                <a href="@Url.Action("Index", "NotificationsConfiguration")">
+                    <i class="ti-files"></i>
+                    <p>Forms Builder</p>
+                </a>
+            </li>
+            <li class="@ViewData["reportBuilder"]">
+                <a href="@Url.Action("Index", "NotificationsConfiguration")">
+                    <i class="ti-bar-chart"></i>
+                    <p>Reports Builder</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

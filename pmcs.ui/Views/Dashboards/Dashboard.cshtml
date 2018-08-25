@@ -1,0 +1,130 @@
+﻿@using pmcs.Model.Contracts;
+@using pmcs.Model.ViewModels;
+@using System.Web.Optimization;
+@model DashboardViewModel
+
+@{
+    ViewBag.Title = "PMCS v1.2 - Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section CustomStyles {
+    @Styles.Render("~/bundles/KanbanBoardStyle")
+}
+
+<div class="row">
+    <ol class="breadcrumb">
+        <li>
+            <a href="#">
+                <em class="fa fa-home"></em>
+            </a>
+        </li>
+        <li class="active">Dashboard</li>
+    </ol>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Dashboard</h1>
+    </div>
+</div>
+<div class="row">
+    <ol class="kanban To-do">
+        <div class="kanban__title">
+            <h2><i class="fa fa-exclamation-triangle"></i> To do</h2>
+        </div>
+        @foreach (var t in Model.NeedActionTasks)
+        {
+            <li class="dd-item" data-id="1">
+                <h3 class="title dd-handle">
+                    @t.WorkflowItemType.ToString() -
+                    @t.ObjectNumber
+                </h3>
+                <div class="text" contenteditable="true">
+                    @t.LastNotes
+                </div>
+                <div>@t.ReceivedDate</div>
+                <div class="actions">
+                    <a class="btn btn-warning" href="@t.URL">
+                        <i class="material-icons"></i>
+                        Action
+                    </a>
+                </div>
+            </li>
+        }
+    </ol>
+    <ol class="kanban progress">
+        <div class="kanban__title">
+            <h2>
+                <i class="fa fa-spinner"></i> In progress
+            </h2>
+        </div>
+        @foreach (var t in Model.OngoingTasks)
+        {
+            <li class="dd-item" data-id="1">
+                <h3 class="title dd-handle">
+                    @t.WorkflowItemType.ToString() -
+                    @t.ObjectNumber
+                </h3>
+                <div class="text" contenteditable="true">
+                    Waiting action ..
+                </div>
+                <div class="actions">
+                    <a class="btn btn-primary" href="@t.URL">
+                        <i class="material-icons"></i>
+                        Details
+                    </a>
+                </div>
+            </li>
+        }
+    </ol>
+    <ol class="kanban  Done">
+        <div class="kanban__title">
+            <h2>
+                <i class="fa fa-check-square"></i> Done
+            </h2>
+        </div>
+        @foreach (var t in Model.FinishedTasks)
+        {
+            <li class="dd-item" data-id="1">
+                <h3 class="title dd-handle">
+                    @t.WorkflowItemType.ToString() -
+                    @t.ObjectNumber
+                </h3>
+                <div class="text" contenteditable="true">
+                    @t.LastNotes
+                </div>
+                <div class="actions">
+                    <a class="btn btn-success" href="@t.URL">
+                        <i class="material-icons"></i>
+                        Details
+                    </a>
+                </div>
+            </li>
+        }
+    </ol>
+    @*<ol class="kanban Gone">
+        <div class="kanban__title">
+            <h2>
+                <i class="fa fa-history"></i> Gone
+            </h2>
+        </div>
+        @foreach (var t in Model.FinishedTasks)
+        {
+            <li class="dd-item" data-id="1">
+                <h3 class="title dd-handle">
+                    @t.WorkflowItemType.ToString() -
+                    @t.ObjectNumber
+                </h3>
+                <div class="text" contenteditable="true">
+                    @t.LastNotes
+                </div>
+                <div class="actions">
+                    <a class="btn btn-danger" href="@t.URL">
+                        <i class="material-icons"></i>
+                        Details
+                    </a>
+                </div>
+            </li>
+        }
+    </ol>*@
+</div>

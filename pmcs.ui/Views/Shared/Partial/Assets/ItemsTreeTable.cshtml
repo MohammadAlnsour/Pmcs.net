@@ -1,0 +1,51 @@
+﻿@model IEnumerable<pmcs.Model.DTOs.InventoryItemTreeTable>
+
+<table id="TableTreeTable" className="table">
+    <thead>
+        <tr>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Quantity</th>
+            <th>Manufacturer</th>
+            <th>Part Number</th>
+            <th>Serial Number</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr id="@item.ItemId" data-tt-id="@item.DataTTId" data-tt-parent-id="@item.DataTTParentId">
+                <td>
+                    @item.ItemDescription
+                </td>
+                <td>
+                    @item.CategoryName
+                </td>
+                <td>
+                    @item.InventoryQuantity
+                </td>
+                <td>
+                    @item.ManufacturerName
+                </td>
+                <td>
+                    @item.PartNumber
+                </td>
+                <td>
+                    @item.SerialNumber
+                </td>
+                <td>
+                    <button id="BtnEdit_@item.ItemId" class="btn btn-primary btn-xs">
+                        <i class="fa fa-pencil-square-o"></i>
+                        Edit Item
+                    </button>
+                    &nbsp;
+                    @*<button id="BtnAddSubItem_@item.ItemId" class="btn btn-warning btn-xs">
+                        <i className="fa fa-plus-square"></i>
+                        Add Sub Item
+                    </button>*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

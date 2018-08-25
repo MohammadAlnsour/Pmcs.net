@@ -1,0 +1,71 @@
+﻿@using pmcs.Model.Contracts
+@model IEnumerable<Invoice>
+
+<table class="table table-striped datatable">
+    <thead>
+        <tr>
+            <th>
+                Invoice Number
+            </th>
+            <th>
+                Task (Milestone)
+            </th>
+            <th>
+                PO
+            </th>
+            <th>
+                Amount Payable
+            </th>
+            <th>
+                Recieved Date
+            </th>
+            <th>
+                Invoice Amount
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var Invoice in Model)
+        {
+            <tr>
+                <td>
+                    <a href="@Url.Action("InvoiceDetails", "Financial", new { id = Invoice.InvoiceId, title = Invoice.InvoiceNumber })">
+                        @Invoice.InvoiceNumber
+                    </a>
+                </td>
+                <td>
+                    <a href="@Url.Action("InvoiceDetails", "Financial", new { id = Invoice.InvoiceId })">
+                        @Invoice.TaskMilestoneName
+                    </a>
+                </td>
+                <td>
+                    @Invoice.PONumber
+                </td>
+                <td>
+                    @Invoice.AmountPayable
+                </td>
+                <td>
+                    @(Invoice.RecievedDate != null ? ((DateTime)Invoice.RecievedDate).ToShortDateString() : "")
+                </td>
+                <td>
+                    @Invoice.InvoiceAmount
+                </td>
+                <td>
+                    <button id="BtnEditInvoice_@Invoice.InvoiceId" class="btn btn-primary btn-xs">
+                        <i class="fa fa-pencil-square-o"></i>
+                        Edit Invoice
+                    </button>
+                    <a class="btn btn-info btn-xs" href="@Url.Action("InvoiceDetails", "Financial", new { id = Invoice.InvoiceId , title = Invoice.InvoiceNumber })">
+                        <i class="fa fa-info"></i>
+                        View Details
+                    </a>
+                    <button id="BtnWorkflow_@Invoice.InvoiceId" class="btn btn-warning btn-xs">
+                        <i class="fa fa-sitemap"></i>
+                        View Workflow
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

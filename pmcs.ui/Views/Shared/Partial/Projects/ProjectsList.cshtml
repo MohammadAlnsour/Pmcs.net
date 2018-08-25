@@ -1,0 +1,50 @@
+﻿@using pmcs.Model.Contracts
+@model IEnumerable<Project>
+
+<table id="TblProjects" class="table table-striped datatable">
+    <thead>
+        <tr>
+            <td>
+                Project Code
+            </td>
+            <td>
+                Project Name
+            </td>
+            <td>
+                Short Name
+            </td>
+            <td>
+                Site Name
+            </td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var project in Model)
+        {
+            <tr>
+                <td>
+                    <a href="@Url.Action("ProjectDetails", "Projects", new { id = project.ProjectId })">
+                        @project.ProjectCode
+                    </a>
+                </td>
+                <td>
+                    <a href="@Url.Action("ProjectDetails", "Projects", new { id = project.ProjectId })">
+                        @project.ProjectName
+                    </a>
+                </td>
+                <td>
+                    @project.ProjectShortName
+                </td>
+                <td>
+                    @project.SiteName
+                </td>
+                <td>
+                    <button id="BtnEditProject_@project.ProjectId" class="btn btn-primary btn-xs"><i class="fa fa-pencil-square"></i> Edit Project</button>
+                    <a class="btn btn-info btn-xs" href="@Url.Action("ProjectDetails", "Projects", new { id =project.ProjectId })"> <i class="fa fa-eye"></i> View Details</a>
+                    @*<button id="BtnImportPlan_@project.ProjectId" class="btn btn-warning btn-xs"><i class="fa fa-download"></i> Import schedule from template</button>*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

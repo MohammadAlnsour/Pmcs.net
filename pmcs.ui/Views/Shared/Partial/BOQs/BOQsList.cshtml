@@ -1,0 +1,62 @@
+﻿@using pmcs.Model.Contracts;
+@model IEnumerable<BOQ>
+
+
+<table class="table table-striped datatable">
+    <thead>
+        <tr>
+            <th>
+                Job
+            </th>
+            <th>
+                CUL
+            </th>
+            <th>
+                Quantity
+            </th>
+            <th>
+                FOC
+            </th>
+            <th>
+                Payable
+            </th>
+            <th>
+                Is FOC
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var BOQ in Model)
+        {
+            <tr>
+                <td>
+                    <a href="@Url.Action("JobsDetails", "Contracts", new { id = BOQ.JobId })">
+                        @BOQ.JobNumber
+                    </a>
+                </td>
+                <td>
+                    @BOQ.CULName
+                </td>
+                <td>
+                    @BOQ.Quantity
+                </td>
+                <td>
+                    @BOQ.FOC
+                </td>
+                <td>
+                    @BOQ.Payable
+                </td>
+                <td>
+                    @BOQ.IsFOC
+                </td>
+                <td>
+                    <button class="btn btn-primary btn-xs" id="BtnEdit_@BOQ.DesignId">
+                        <i class="fa fa-refresh"></i>
+                        Edit
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

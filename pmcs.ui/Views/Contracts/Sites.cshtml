@@ -1,0 +1,104 @@
+﻿@using pmcs.Model.Contracts;
+@model IEnumerable<Site>
+@{
+    ViewBag.Title = "PMCS v1.2 - Sites List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <ol class="breadcrumb">
+        <li><a href="#"><em class="fa fa-home"></em></a></li>
+        <li>Contracts</li>
+        <li class="active">Sites List</li>
+    </ol>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Sites List</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default ">
+            <div class="panel-heading">
+                Manage Sites List
+                <span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span>
+            </div>
+            <div class="panel-body timeline-container">
+                <div id="divAddSite"></div>
+                <div id="divEditSite"></div>
+                <br />
+                <div id="divSitesList">
+                    <table class="table table-striped datatable">
+                        <thead>
+                            <tr>
+                                <td>
+                                    Site Number
+                                </td>
+                                <td>
+                                    Site Name
+                                </td>
+                                <td>
+                                    Site Type
+                                </td>
+                                <td>
+                                    Site Owner
+                                </td>
+                                <td>
+                                    District
+                                </td>
+                                <td>
+                                    Governorate
+                                </td>
+                                <td></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var site in Model)
+                {
+                    <tr>
+                        <td>
+                            <a href="@Url.Action("SitesDetails", "Contracts", new { id = site.SiteId })">
+                                @site.SiteNumber
+                            </a>
+                        </td>
+                        <td>
+                            <a href="@Url.Action("SitesDetails", "Contracts", new { id = site.SiteId })">
+                                @site.SiteName
+                            </a>
+                        </td>
+                        <td>
+                            @site.SiteTypeName
+                        </td>
+                        <td>
+                            @site.SiteOwnerName
+                        </td>
+                        <td>
+                            @site.DistrictName
+                        </td>
+                        <td>
+                            @site.GovernorateName
+                        </td>
+                        <td>
+                            <button class="btn btn-primary btn-xs" id="BtnEditSite_@site.SiteId">
+                                <i class="fa fa-refresh"></i>
+                                Edit Site
+                            </button>
+                        </td>
+                    </tr>
+    }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="HiddenSiteId" name="HiddenSiteId" />
+
+@section customScripts {
+
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfJhggLgtrLa2roh5tYq3gkKszAefqmhQ&libraries=places"></script>
+    <script type="text/javascript" src="/Scripts/App/Sites/SitesList.jsx"></script>
+    <script type="text/javascript" src="/Scripts/App/Sites/EditSite.jsx"></script>
+}

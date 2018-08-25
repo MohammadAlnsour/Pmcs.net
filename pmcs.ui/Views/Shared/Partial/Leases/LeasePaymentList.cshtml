@@ -1,0 +1,65 @@
+﻿
+@model IEnumerable<pmcs.Model.Contracts.LeasePaymentTransaction>
+
+<table class="table table-striped datatable">
+    <thead>
+        <tr>
+            <th>
+                Lease contract number
+            </th>
+            <th>
+                Amount
+            </th>
+            <th>
+                Lease Payment Status
+            </th>
+            <th>
+                Payment Due Date
+            </th>
+            <th>
+                Receipe Number
+            </th>
+            <th>
+                Payment Transaction Number
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var payment in Model)
+        {
+            <tr>
+                <td>
+                    <a href="@Url.Action("", "")">
+                        @payment.LeaseContractNumnber
+                    </a>
+                </td>
+                <td>
+                    @(payment.Amount != null ? Math.Round(Convert.ToDouble(payment.Amount), 3) : 0.0)
+                </td>
+                <td>
+                    @payment.LeasePaymentStatus
+                </td>
+                <td>
+                    @(payment.PaymentDueDate != null ? Convert.ToDateTime(payment.PaymentDueDate).ToShortDateString() : "")
+                </td>
+                <td>
+                    @payment.ReceipeNumber
+                </td>
+                <td>
+                    @payment.PaymentTransactionNumber
+                </td>
+                <td>
+                    <button class="btn btn-primary btn-xs" id="BtnEditSite_@payment.LeaseId">
+                        <i class="fa fa-refresh"></i>
+                        Edit
+                    </button>
+                    <button class="btn btn-warning btn-xs" id="BtnWorkflow_@payment.LeaseId">
+                        <i class="fa fa-sitemap"></i>
+                        Workflow
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

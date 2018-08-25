@@ -1,0 +1,565 @@
+﻿
+@using pmcs.Model.Contracts;
+@model pmcs.Model.ViewModels.TicketsViewModel
+
+@{
+    ViewBag.Title = "PMCS v1.2 - Tickets Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <ol class="breadcrumb">
+        <li><a href="#"><em class="fa fa-home"></em></a></li>
+        @*<li>Tickets Management</li>*@
+        <li class="active">Tickets Management</li>
+    </ol>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Manage Tickets</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default ">
+            <div class="panel-heading">
+                Ticket Management
+                <span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span>
+            </div>
+            <div class="panel-body">
+                <div class="panel-body tabs">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#myTickets" data-toggle="tab" aria-expanded="true"><i class="fa fa-user-o"></i> My Tickets</a></li>
+                        <li class=""><a href="#AssignedToNameMe" data-toggle="tab" aria-expanded="false"><i class="fa fa-user-circle-o"></i> Assigned to me</a></li>
+                        <li class=""><a href="#openTickets" data-toggle="tab" aria-expanded="false"><i class="fa fa-envelope-open"></i> Open Tickets</a></li>
+                        <li class=""><a href="#allTickets" data-toggle="tab" aria-expanded="false"><i class="fa fa-globe"></i> All Tickets</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade active in" id="myTickets">
+                            <h4>My Tickets</h4>
+                            <br />
+                            <p>
+                                <div id="DivSubmitTicket"></div>
+                                <div id="divMyTicketsContainer" class="responsive-table">
+                                    <table class="table table-striped datatable">
+                                        <thead>
+                                            <tr>
+                                                <td>
+                                                    Module
+                                                </td>
+                                                <td>
+                                                    Ticket Subject
+                                                </td>
+                                                <td>
+                                                    Severity
+                                                </td>
+                                                <td>
+                                                    Status
+                                                </td>
+                                                <td>
+                                                    Assigned To
+                                                </td>
+                                                <td>
+                                                    Sender
+                                                </td>
+                                                <td>
+                                                    Sent Date
+                                                </td>
+                                                <td>
+                                                    Completed Date
+                                                </td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var ticket in Model.MyTickets)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        @ticket.ModuleName
+                                                    </td>
+                                                    <td>
+                                                        @ticket.TicketSubject
+                                                    </td>
+                                                    <td>
+                                                        @if (ticket.SeverityId == 1)
+                                                        {
+                                                            <label class="alert bg-info" style="padding:2px 8px 2px 8px">
+                                                                @ticket.Severity
+                                                            </label>
+                                                        }
+                                                        else if (ticket.SeverityId == 2)
+                                                        {
+                                                            <label class="alert bg-info" style="padding:2px 8px 2px 8px">
+                                                                @ticket.Severity
+                                                            </label>
+                                                        }
+                                                        else if (ticket.SeverityId == 3)
+                                                        {
+                                                            <label class="alert bg-warning" style="padding:2px 8px 2px 8px">
+                                                                @ticket.Severity
+                                                            </label>
+                                                        }
+                                                        else if (ticket.SeverityId == 4)
+                                                        {
+                                                            <label class="alert bg-danger" style="padding:2px 8px 2px 8px">
+                                                                @ticket.Severity
+                                                            </label>
+                                                        }
+                                                        else if (ticket.SeverityId == 5)
+                                                        {
+                                                            <label class="alert bg-danger" style="padding:2px 8px 2px 8px">
+                                                                @ticket.Severity
+                                                            </label>
+                                                        }
+                                                    </td>
+                                                    <td>
+                                                        @if (ticket.Status == 1)
+                                                        {
+                                                            <label class="alert bg-danger" style="padding:2px 8px 2px 8px">
+                                                                @ticket.StatusName
+                                                            </label>
+                                                        }
+                                                        else if (ticket.Status == 2)
+                                                        {
+                                                            <label class="alert bg-info" style="padding:2px 8px 2px 8px">
+                                                                @ticket.StatusName
+                                                            </label>
+                                                        }
+                                                        else if (ticket.Status == 3)
+                                                        {
+                                                            <label class="alert bg-primary" style="padding:2px 8px 2px 8px">
+                                                                @ticket.StatusName
+                                                            </label>
+                                                        }
+                                                    </td>
+                                                    <td>
+                                                        @ticket.AssignedToName
+                                                    </td>
+                                                    <td>
+                                                        @ticket.OwnerName
+                                                    </td>
+                                                    <td>
+                                                        @ticket.CreatedDate.ToShortDateString()
+                                                    </td>
+                                                    <td>
+                                                        @(ticket.CompletedDate == null ? " - " : ((DateTime)ticket.CompletedDate).ToShortDateString())
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-primary btn-xs" id="BtnEditTicket_@ticket.TicketId">
+                                                            <i class="fa fa-refresh"></i>
+                                                            Edit
+                                                        </button>
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-success btn-xs" id="BtnConversation_@ticket.TicketId">
+                                                            <i class="fa fa-comments"></i>
+                                                            Details
+                                                        </button>
+                                                    </td>
+                                                    @*<td>
+                                                        <button class="btn btn-info btn-xs" id="BtnClose_@ticket.TicketId">
+                                                            <i class="fa fa-check-circle"></i>
+                                                            Close Ticket
+                                                        </button>
+                                                    </td>*@
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </p>
+                        </div>
+                        <div class="tab-pane fade" id="AssignedToNameMe">
+                            <h4>Assigned to me</h4>
+                            <br />
+                            <p>
+                                <div id="divAssignToMeContainer" class="responsive-table">
+                                    <table class="table table-striped datatable">
+                                        <thead>
+                                            <tr>
+                                                <td>
+                                                    Module
+                                                </td>
+                                                <td>
+                                                    Ticket Subject
+                                                </td>
+                                                <td>
+                                                    Severity
+                                                </td>
+                                                <td>
+                                                    Status
+                                                </td>
+                                                <td>
+                                                    Assigned To
+                                                </td>
+                                                <td>
+                                                    Sender
+                                                </td>
+                                                <td>
+                                                    Sent Date
+                                                </td>
+                                                <td>
+                                                    Completed Date
+                                                </td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var ticket in Model.AssignedToMe)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        @ticket.ModuleName
+                                                    </td>
+                                                    <td>
+                                                        @ticket.TicketSubject
+                                                    </td>
+                                                    <td>
+                                                        @if (ticket.SeverityId == 1)
+                                                        {
+                                                            <label class="alert bg-info" style="padding:2px 8px 2px 8px">
+                                                                @ticket.Severity
+                                                            </label>
+                                                        }
+                                                        else if (ticket.SeverityId == 2)
+                                                        {
+                                                            <label class="alert bg-info" style="padding:2px 8px 2px 8px">
+                                                                @ticket.Severity
+                                                            </label>
+                                                        }
+                                                        else if (ticket.SeverityId == 3)
+                                                        {
+                                                            <label class="alert bg-warning" style="padding:2px 8px 2px 8px">
+                                                                @ticket.Severity
+                                                            </label>
+                                                        }
+                                                        else if (ticket.SeverityId == 4)
+                                                        {
+                                                            <label class="alert bg-danger" style="padding:2px 8px 2px 8px">
+                                                                @ticket.Severity
+                                                            </label>
+                                                        }
+                                                        else if (ticket.SeverityId == 5)
+                                                        {
+                                                            <label class="alert bg-danger" style="padding:2px 8px 2px 8px">
+                                                                @ticket.Severity
+                                                            </label>
+                                                        }
+                                                    </td>
+                                                    <td>
+                                                        @if (ticket.Status == 1)
+                                                        {
+                                                            <label class="alert bg-danger" style="padding:2px 8px 2px 8px">
+                                                                @ticket.StatusName
+                                                            </label>
+                                                        }
+                                                        else if (ticket.Status == 2)
+                                                        {
+                                                            <label class="alert bg-info" style="padding:2px 8px 2px 8px">
+                                                                @ticket.StatusName
+                                                            </label>
+                                                        }
+                                                        else if (ticket.Status == 3)
+                                                        {
+                                                            <label class="alert bg-primary" style="padding:2px 8px 2px 8px">
+                                                                @ticket.StatusName
+                                                            </label>
+                                                        }
+                                                    </td>
+                                                    <td>
+                                                        @ticket.AssignedToName
+                                                    </td>
+                                                    <td>
+                                                        @ticket.OwnerName
+                                                    </td>
+                                                    <td>
+                                                        @ticket.CreatedDate.ToShortDateString()
+                                                    </td>
+                                                    <td>
+                                                        @(ticket.CompletedDate == null ? " - " : ((DateTime)ticket.CompletedDate).ToShortDateString())
+                                                    </td>
+
+                                                    <td>
+                                                        <button class="btn btn-success btn-xs" id="BtnFixConversation_@ticket.TicketId">
+                                                            <i class="fa fa-comments"></i>
+                                                            Details
+                                                        </button>
+                                                    </td>
+                                                    @*<td>
+                                                        <button class="btn btn-info btn-xs" id="BtnFixTicket_@ticket.TicketId">
+                                                            <i class="fa fa-check-circle"></i>
+                                                            Fix Ticket
+                                                        </button>
+                                                    </td>*@
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </p>
+                        </div>
+                        <div class="tab-pane fade" id="openTickets">
+                            <h4>Open Tickets</h4>
+                            <br />
+                            <p>
+                                <div id="DivOpenTicketsContainer" class="responsive-table">
+                                    <table class="table table-striped datatable">
+                                        <thead>
+                                            <tr>
+                                                <td>
+                                                    Module
+                                                </td>
+                                                <td>
+                                                    Ticket Subject
+                                                </td>
+                                                <td>
+                                                    Severity
+                                                </td>
+                                                <td>
+                                                    Status
+                                                </td>
+                                                <td>
+                                                    Assigned To
+                                                </td>
+                                                <td>
+                                                    Sender
+                                                </td>
+                                                <td>
+                                                    Sent Date
+                                                </td>
+                                                <td>
+                                                    Completed Date
+                                                </td>
+                                                <td></td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var ticket in Model.OpenTickets)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        @ticket.ModuleName
+                                                    </td>
+                                                    <td>
+                                                        @ticket.TicketSubject
+                                                    </td>
+                                                    <td>
+                                                        @if (ticket.SeverityId == 1)
+                                                        {
+                                                            <label class="alert bg-info" style="padding:2px 8px 2px 8px">
+                                                                @ticket.Severity
+                                                            </label>
+                                                        }
+                                                        else if (ticket.SeverityId == 2)
+                                                        {
+                                                            <label class="alert bg-info" style="padding:2px 8px 2px 8px">
+                                                                @ticket.Severity
+                                                            </label>
+                                                        }
+                                                        else if (ticket.SeverityId == 3)
+                                                        {
+                                                            <label class="alert bg-warning" style="padding:2px 8px 2px 8px">
+                                                                @ticket.Severity
+                                                            </label>
+                                                        }
+                                                        else if (ticket.SeverityId == 4)
+                                                        {
+                                                            <label class="alert bg-danger" style="padding:2px 8px 2px 8px">
+                                                                @ticket.Severity
+                                                            </label>
+                                                        }
+                                                        else if (ticket.SeverityId == 5)
+                                                        {
+                                                            <label class="alert bg-danger" style="padding:2px 8px 2px 8px">
+                                                                @ticket.Severity
+                                                            </label>
+                                                        }
+                                                    </td>
+                                                    <td>
+                                                        @if (ticket.Status == 1)
+                                                        {
+                                                            <label class="alert bg-danger" style="padding:2px 8px 2px 8px">
+                                                                @ticket.StatusName
+                                                            </label>
+                                                        }
+                                                        else if (ticket.Status == 2)
+                                                        {
+                                                            <label class="alert bg-info" style="padding:2px 8px 2px 8px">
+                                                                @ticket.StatusName
+                                                            </label>
+                                                        }
+                                                        else if (ticket.Status == 3)
+                                                        {
+                                                            <label class="alert bg-primary" style="padding:2px 8px 2px 8px">
+                                                                @ticket.StatusName
+                                                            </label>
+                                                        }
+                                                    </td>
+                                                    <td>
+                                                        @ticket.AssignedToName
+                                                    </td>
+                                                    <td>
+                                                        @ticket.OwnerName
+                                                    </td>
+                                                    <td>
+                                                        @ticket.CreatedDate.ToShortDateString()
+                                                    </td>
+                                                    <td>
+                                                        @(ticket.CompletedDate == null ? " - " : ((DateTime)ticket.CompletedDate).ToShortDateString())
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-success btn-xs" id="BtnViewConversation_@ticket.TicketId">
+                                                            <i class="fa fa-comments"></i>
+                                                            Details
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </p>
+                        </div>
+                        <div class="tab-pane fade" id="allTickets">
+                            <h4>All Tickets</h4>
+                            <br />
+                            <p>
+                                <br />
+                                <div id="DivAllTicketsContainer" class="responsive-table">
+                                    <table class="table table-striped datatable">
+                                        <thead>
+                                            <tr>
+                                                <td>
+                                                    Module
+                                                </td>
+                                                <td>
+                                                    Ticket Subject
+                                                </td>
+                                                <td>
+                                                    Severity
+                                                </td>
+                                                <td>
+                                                    Status
+                                                </td>
+                                                <td>
+                                                    Assigned To
+                                                </td>
+                                                <td>
+                                                    Sender
+                                                </td>
+                                                <td>
+                                                    Sent Date
+                                                </td>
+                                                <td>
+                                                    Completed Date
+                                                </td>
+                                                <td></td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var ticket in Model.AllTicketsPaged)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        @ticket.ModuleName
+                                                    </td>
+                                                    <td>
+                                                        @ticket.TicketSubject
+                                                    </td>
+                                                    <td>
+                                                        @if (ticket.SeverityId == 1)
+                                                        {
+                                                            <label class="alert bg-info" style="padding:2px 8px 2px 8px">
+                                                                @ticket.Severity
+                                                            </label>
+                                                        }
+                                                        else if (ticket.SeverityId == 2)
+                                                        {
+                                                            <label class="alert bg-info" style="padding:2px 8px 2px 8px">
+                                                                @ticket.Severity
+                                                            </label>
+                                                        }
+                                                        else if (ticket.SeverityId == 3)
+                                                        {
+                                                            <label class="alert bg-warning" style="padding:2px 8px 2px 8px">
+                                                                @ticket.Severity
+                                                            </label>
+                                                        }
+                                                        else if (ticket.SeverityId == 4)
+                                                        {
+                                                            <label class="alert bg-danger" style="padding:2px 8px 2px 8px">
+                                                                @ticket.Severity
+                                                            </label>
+                                                        }
+                                                        else if (ticket.SeverityId == 5)
+                                                        {
+                                                            <label class="alert bg-danger" style="padding:2px 8px 2px 8px">
+                                                                @ticket.Severity
+                                                            </label>
+                                                        }
+                                                    </td>
+                                                    <td>
+                                                        @if (ticket.Status == 1)
+                                                        {
+                                                            <label class="alert bg-danger" style="padding:2px 8px 2px 8px">
+                                                                @ticket.StatusName
+                                                            </label>
+                                                        }
+                                                        else if (ticket.Status == 2)
+                                                        {
+                                                            <label class="alert bg-info" style="padding:2px 8px 2px 8px">
+                                                                @ticket.StatusName
+                                                            </label>
+                                                        }
+                                                        else if (ticket.Status == 3)
+                                                        {
+                                                            <label class="alert bg-primary" style="padding:2px 8px 2px 8px">
+                                                                @ticket.StatusName
+                                                            </label>
+                                                        }
+                                                    </td>
+                                                    <td>
+                                                        @ticket.AssignedToName
+                                                    </td>
+                                                    <td>
+                                                        @ticket.OwnerName
+                                                    </td>
+                                                    <td>
+                                                        @ticket.CreatedDate.ToShortDateString()
+                                                    </td>
+                                                    <td>
+                                                        @(ticket.CompletedDate == null ? " - " : ((DateTime)ticket.CompletedDate).ToShortDateString())
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-success btn-xs" id="BtnViewConversation_@ticket.TicketId">
+                                                            <i class="fa fa-comments"></i>
+                                                            Details
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div id="DivTicketDetails"></div>
+                <div id="DivEditTicket"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" id="HiddenTicketId" name="HiddenTicketId" />
+
+@section customScripts {
+    @*<script type="text/javascript" src="~/Scripts/App/LeaseContracts/AddContract.jsx"></script>
+        <script type="text/javascript" src="~/Scripts/App/LeaseContracts/EditContract.jsx"></script>*@
+    <script type="text/javascript" src="~/Scripts/App/TicketManagement/SubmitTicket.jsx"></script>
+}

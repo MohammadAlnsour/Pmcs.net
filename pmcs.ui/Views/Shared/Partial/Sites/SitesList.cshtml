@@ -1,0 +1,62 @@
+﻿@using pmcs.Model.Contracts;
+@model IEnumerable<Site>
+<table class="table table-striped datatable">
+    <thead>
+        <tr>
+            <th>
+                Site Number
+            </th>
+            <th>
+                Site Name
+            </th>
+            <th>
+                Site Type
+            </th>
+            <th>
+                Site Owner
+            </th>
+            <th>
+                District
+            </th>
+            <th>
+                Governorate
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var site in Model)
+        {
+            <tr>
+                <td>
+                    <a href="@Url.Action("", "")">
+                        @site.SiteNumber
+                    </a>
+                </td>
+                <td>
+                    <a href="@Url.Action("", "")">
+                        @site.SiteName
+                    </a>
+                </td>
+                <td>
+                    @site.SiteTypeName
+                </td>
+                <td>
+                    @site.SiteOwnerName
+                </td>
+                <td>
+                    @site.DistrictName
+                </td>
+                <td>
+                    @site.GovernorateName
+                </td>
+                <td>
+                    <button class="btn btn-primary btn-xs" id="BtnEditSite_@site.SiteId">
+                        <i class="fa fa-refresh"></i>
+                        Edit Site
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

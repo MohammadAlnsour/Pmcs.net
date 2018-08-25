@@ -1,0 +1,214 @@
+﻿@using pmcs.Model.ViewModels
+@using System.Web.Optimization
+@model InvoicesListViewModel
+@{
+    ViewBag.Title = "PMCS v1.2 - Invoices List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Styles.Render("~/bundles/DataTableCss")
+
+<div class="row">
+    <ol class="breadcrumb">
+        <li><a href="#"><em class="fa fa-home"></em></a></li>
+        <li>Financial Management</li>
+        <li class="active">Invoices List</li>
+    </ol>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Invoices List</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default ">
+            <div class="panel-heading">
+                Manage Invoices
+                <span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span>
+            </div>
+            <div class="panel-body timeline-container">
+                <div class="panel-body tabs">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#invoices" data-toggle="tab" aria-expanded="true"><i class="fa fa-book"></i> Invoices</a></li>
+                        <li class=""><a href="#workflow" data-toggle="tab" aria-expanded="false"><i class="fa fa-sitemap"></i> Invoices Workflow</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade active in" id="invoices">
+                            <h4>
+                                Invoices List
+                            </h4>
+                            <br />
+                            <p>
+                                <div id="DivAddEntity"></div>
+                                <div id="DivEditEtity"></div>
+                                <br />
+                                <div id="DivEntityList">
+                                    <table id="TblInvoices" class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <td>
+                                                    Invoice Number
+                                                </td>
+                                                <td>
+                                                    Task (Milestone)
+                                                </td>
+                                                <td>
+                                                    PO
+                                                </td>
+                                                <td>
+                                                    Amount Payable
+                                                </td>
+                                                <td>
+                                                    Recieved Date
+                                                </td>
+                                                <td>
+                                                    Invoice Amount
+                                                </td>
+                                                <td></td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var Invoice in Model.Invoices)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        <a href="@Url.Action("InvoiceDetails", "Financial", new { id = Invoice.InvoiceId, title = Invoice.InvoiceNumber })">
+                                                            @Invoice.InvoiceNumber
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="@Url.Action("InvoiceDetails", "Financial", new { id = Invoice.InvoiceId })">
+                                                            @Invoice.TaskMilestoneName
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        @Invoice.PONumber
+                                                    </td>
+                                                    <td>
+                                                        @Invoice.AmountPayable
+                                                    </td>
+                                                    <td>
+                                                        @(Invoice.RecievedDate != null ? ((DateTime)Invoice.RecievedDate).ToShortDateString() : "")
+                                                    </td>
+                                                    <td>
+                                                        @Invoice.InvoiceAmount
+                                                    </td>
+                                                    <td>
+                                                        <button id="BtnEditInvoice_@Invoice.InvoiceId" class="btn btn-primary btn-xs">
+                                                            <i class="fa fa-pencil-square-o"></i>
+                                                            Edit Invoice
+                                                        </button>
+                                                        <a class="btn btn-info btn-xs" href="@Url.Action("InvoiceDetails", "Financial", new { id = Invoice.InvoiceId , title = Invoice.InvoiceNumber })">
+                                                            <i class="fa fa-info"></i>
+                                                            View Details
+                                                        </a>
+                                                        <button id="BtnWorkflow_@Invoice.InvoiceId" class="btn btn-warning btn-xs">
+                                                            <i class="fa fa-sitemap"></i>
+                                                            View Workflow
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </p>
+                        </div>
+                        <div class="tab-pane fade" id="workflow">
+                            <h4>Invoices Workflow</h4>
+                            <br />
+                            <p>
+                                <div id="DivFilterInvoiceWorkflow"></div>
+
+
+                                <br />
+                                <div id="DivInvoiceWorkflowContainer" class="responsive-table">
+                                    <table id="TableWorkflows" class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <td>
+                                                    Invoice Number
+                                                </td>
+                                                <td>
+                                                    Stage
+                                                </td>
+                                                <td>
+                                                    Received date
+                                                </td>
+                                                <td>
+                                                    Processed date
+                                                </td>
+                                                <td>
+                                                    Owner name
+                                                </td>
+                                                <td>
+                                                    Status
+                                                </td>
+                                                <td>
+                                                    Notes
+                                                </td>
+                                                <td></td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @*@foreach (var workflow in Model.Workflows)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            @workflow.InvoiceNumber
+                                                        </td>
+                                                        <td>
+                                                            @workflow.StageName
+                                                        </td>
+                                                        <td>
+                                                            @workflow.ReceivedDateString
+                                                        </td>
+                                                        <td>
+                                                            @(workflow.ProcessedDate != null ? ((DateTime)workflow.ProcessedDate).ToShortDateString() : "")
+                                                        </td>
+                                                        <td>
+                                                            @workflow.OwnerName
+                                                        </td>
+                                                        <td>
+                                                            @workflow.StatusName
+                                                        </td>
+                                                        <td>
+                                                            @workflow.Remarks
+                                                        </td>
+                                                        <td>
+                                                            @if (!workflow.IsFinished)
+                                                            {
+                                                                <button class="btn btn-primary btn-xs" id="BtnApproveRejectWorkflow_@workflow.Id">
+                                                                    <i class="fa fa-check-square"></i>
+                                                                    Action
+                                                                </button>
+                                                            }
+                                                        </td>
+                                                    </tr>
+                                                }*@
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="divInvoiceWorkflowViewerContainer"></div>
+<div id="divPaymentsWorkflowAction"></div>
+<input type="hidden" id="HiddenEditInvoiceId" />
+<input type="hidden" id="HiddenWorkflowId" />
+<input type="hidden" id="HiddenInvoiceId" />
+
+@section customScripts {
+    @Scripts.Render("~/bundles/DataTable")
+    <script type="text/javascript" src="/Scripts/App/Financial/AddInvoice.jsx"></script>
+    <script type="text/javascript" src="/Scripts/App/Financial/EditInvoice.jsx"></script>
+    <script type="text/javascript" src="/Scripts/App/Financial/InvoiceWorkflowAction.jsx"></script>
+    <script type="text/javascript" src="/Scripts/App/Financial/InvoiceWorkflowViewer.jsx"></script>
+    <script type="text/javascript" src="/Scripts/App/Financial/FilterWorkflowsByInvoice.jsx"></script>
+}

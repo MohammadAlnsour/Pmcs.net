@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "System Lookup tables";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="header">
+                    <h4 class="title">System Lookup tables</h4>
+                    <p class="category">You can configure and control the lookup configuration tables in system. by clicking on the node from the tree</p>
+                </div>
+                <div class="content table-responsive table-full-width">
+                    <div id="TreeNodesContrainer"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="hiddenLookupTable" />
+
+@section customScripts {
+    <script type="text/javascript" src="@Url.Content("~/Scripts/App/LookupTables.jsx")"></script>
+    }

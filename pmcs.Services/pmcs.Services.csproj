@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AB8A469B-852C-45A3-B469-0BA7AE60E6FC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>pmcs.Services</RootNamespace>
+    <AssemblyName>pmcs.Services</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssetsServices\AssetsManagementService.cs" />
+    <Compile Include="AuthService.cs" />
+    <Compile Include="ChangeWorkflowService.cs" />
+    <Compile Include="ConfigServices\EmailService.cs" />
+    <Compile Include="ContractsServices\BOQService.cs" />
+    <Compile Include="ContractsServices\CULsService.cs" />
+    <Compile Include="ContractsServices\ElementsService.cs" />
+    <Compile Include="ContractsServices\InvoicesService.cs" />
+    <Compile Include="ContractsServices\JobsService.cs" />
+    <Compile Include="ContractsServices\ProjectTemplatesService.cs" />
+    <Compile Include="DocumentServices\DocumentManagementService.cs" />
+    <Compile Include="Interfaces\IAssetsLookupService.cs" />
+    <Compile Include="Interfaces\IAssetsManagementService.cs" />
+    <Compile Include="Interfaces\IBOQService.cs" />
+    <Compile Include="Interfaces\IChangeWorkflowService.cs" />
+    <Compile Include="Interfaces\IContractorsLookupService.cs" />
+    <Compile Include="Interfaces\IContractsLookupsService.cs" />
+    <Compile Include="Interfaces\IDocumentManagementService.cs" />
+    <Compile Include="Interfaces\IElementsService.cs" />
+    <Compile Include="Interfaces\IInvoicesService.cs" />
+    <Compile Include="Interfaces\IInvoiceWorkflowService.cs" />
+    <Compile Include="Interfaces\IJobsService.cs" />
+    <Compile Include="Interfaces\INotificationsService.cs" />
+    <Compile Include="Interfaces\IPOsService.cs" />
+    <Compile Include="ContractsServices\LeaseContractsService.cs" />
+    <Compile Include="ContractsServices\POsService.cs" />
+    <Compile Include="ContractsServices\ProjectManagementService.cs" />
+    <Compile Include="ContractsServices\ProjectsService.cs" />
+    <Compile Include="ContractsServices\PurchaseOrdersService.cs" />
+    <Compile Include="ContractsServices\SitesService.cs" />
+    <Compile Include="ContractsServices\TasksService.cs" />
+    <Compile Include="Interfaces\IAuthService.cs" />
+    <Compile Include="Interfaces\ICULsService.cs" />
+    <Compile Include="Interfaces\IEmailService.cs" />
+    <Compile Include="Interfaces\ILeaseContractsService.cs" />
+    <Compile Include="Interfaces\IProjectManagementService.cs" />
+    <Compile Include="Interfaces\IProjectsService.cs" />
+    <Compile Include="Interfaces\IProjectTemplatesService.cs" />
+    <Compile Include="Interfaces\IPurchaseOrdersService.cs" />
+    <Compile Include="Interfaces\ISitesLookupService.cs" />
+    <Compile Include="Interfaces\IModulesService.cs" />
+    <Compile Include="Interfaces\INotificationsTypesService.cs" />
+    <Compile Include="Interfaces\IRolesService.cs" />
+    <Compile Include="Interfaces\ISitesService.cs" />
+    <Compile Include="Interfaces\ITasksService.cs" />
+    <Compile Include="Interfaces\ITicketsService.cs" />
+    <Compile Include="Interfaces\IWorkflowService.cs" />
+    <Compile Include="LookupServices\AssetsLookupService.cs" />
+    <Compile Include="LookupServices\ContractorsLookupService.cs" />
+    <Compile Include="LookupServices\ContractsLookupsService.cs" />
+    <Compile Include="LookupServices\SitesLookupService.cs" />
+    <Compile Include="ModulesService.cs" />
+    <Compile Include="LookupServices\NotificationsTypesService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RolesService.cs" />
+    <Compile Include="SharedServices\NotificationsService.cs" />
+    <Compile Include="TicketsServices\TicketsService.cs" />
+    <Compile Include="InvoicesWorkflowService.cs" />
+    <Compile Include="WorkflowService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\pmcs.Business\pmcs.Business.csproj">
+      <Project>{b963d9f2-ce3c-418a-af1b-080d8be6cfa0}</Project>
+      <Name>pmcs.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\pmcs.Core\pmcs.Core.csproj">
+      <Project>{1e017752-b05d-4f3b-a038-4098f9e6d923}</Project>
+      <Name>pmcs.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\pmcs.DB\pmcs.DB.csproj">
+      <Project>{c44f8007-9915-4034-a49a-939499d1d26a}</Project>
+      <Name>pmcs.DB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\pmcs.Model\pmcs.Models.csproj">
+      <Project>{a21bd2cf-e709-4197-a858-98d89ffebbd1}</Project>
+      <Name>pmcs.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\pmcs.Repository\pmcs.Repository.csproj">
+      <Project>{D6DE14A4-BA32-482B-9634-4B383990ABF8}</Project>
+      <Name>pmcs.Repository</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

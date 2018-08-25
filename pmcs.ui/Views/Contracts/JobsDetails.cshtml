@@ -1,0 +1,287 @@
+﻿@using pmcs.Model.ViewModels;
+@model JobDetailsViewModel
+@{
+    ViewBag.Title = "PMCS v1.2 - Purchase Order : " + Model.PONumber;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <ol class="breadcrumb">
+        <li><a href="#"><em class="fa fa-home"></em></a></li>
+        <li>Contracts</li>
+        <li><a href="@Url.Action("Jobs","Contracts")">Jobs List</a></li>
+        <li class="active">@Model.JobNumber</li>
+    </ol>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">@Model.JobNumber - Job Details</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default ">
+            <div class="panel-heading">
+                Job @Model.JobNumber
+                <span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span>
+            </div>
+            <div class="panel-body">
+                <h4>Basic Job Details</h4>
+                <br />
+                <p>
+                    <table class="table" style="width:100%">
+                        <tbody>
+                            <tr>
+                                <td style=" width: 20% ">
+                                    Job Number :
+                                </td>
+                                <td>
+                                    <span>@Model.JobNumber</span>
+                                </td>
+                                <td>&nbsp;</td>
+                                <td style="width: 15%">
+                                    Project :
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("ProjectDetails","Projects", new { id = Model.ProjectId, title = HttpUtility.HtmlEncode(Model.ProjectName) })">
+                                        <span>@Model.ProjectName</span>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style=" width: 20% ">
+                                    Element :
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("ElementDetails","Contracts", new { id = Model.ElementId, title = HttpUtility.HtmlEncode(Model.ElementName) })">
+                                        <span>@Model.ElementName</span>
+                                    </a>
+                                </td>
+                                <td>&nbsp;</td>
+                                <td style=" width: 20% ">
+                                    Site :
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("SitesDetails","Contracts", new { id = Model.SiteIdNumber, title = HttpUtility.HtmlEncode(Model.SiteName) })">
+                                        <span>@Model.SiteName</span>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style=" width: 20% ">
+                                    FOC :
+                                </td>
+                                <td>
+                                    @(Model.FOC == true ? "Yes" : "No")
+                                </td>
+                                <td>&nbsp;</td>
+                                <td style=" width: 20% ">
+                                    Subcontractor :
+                                </td>
+                                <td>
+                                    <span>@Model.SubContractor</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style=" width: 20% ">
+                                    Task/Milestone :
+                                </td>
+                                <td>
+                                    @if (Model.ProjectTaskId != null)
+                                    {
+                                        <a href="@Url.Action("TaskDetails","Projects", new { id= Model.ProjectTaskId })">
+                                            <span>@Model.TaskName</span>
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <span>-</span>
+                                    }
+                                </td>
+                                <td>&nbsp;</td>
+                                <td style=" width: 20% ">
+                                    Job Type :
+                                </td>
+                                <td>
+                                    <span>@Model.JobTypeName</span>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <input type="hidden" id="HiddenJobId" value="@Model.JobId" />
+                    <input type="hidden" id="HiddenAsBuiltId" />
+                    <input type="hidden" id="HiddenPATId" />
+                </p>
+                <div id="container"></div>
+                <div class="panel-body tabs">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#asBuilt" data-toggle="tab" aria-expanded="false"><i class="fa fa-handshake-o"></i>&nbsp;AsBuilt CULs</a></li>
+                        <li class=""><a href="#PATs" data-toggle="tab" aria-expanded="false"><i class="fa fa-calculator"></i>&nbsp;PATs</a></li>
+                        <li class=""><a href="#OILs" data-toggle="tab" aria-expanded="false"><i class="fa fa-money"></i>&nbsp;OILs List</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade active in" id="asBuilt">
+                            <h4>AsBuilt CULs</h4>
+
+                            <div id="DivAddAsBuilt"></div>
+                            <div id="DivEditAsBuilt"></div>
+
+                            <div id="DivAsBuiltTable">
+                                <table class="table table-striped datatable">
+                                    <thead>
+                                        <tr>
+                                            <td>
+                                                Job Number
+                                            </td>
+                                            <td>
+                                                CUL Id
+                                            </td>
+                                            <td>
+                                                Quantity
+                                            </td>
+                                            <td>
+                                                FOC
+                                            </td>
+                                            <td>
+                                                Payable
+                                            </td>
+                                            <td>
+                                                FOC Amount
+                                            </td>
+                                            <td>
+                                                Category
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var asBuilt in Model.AsBuilts)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @asBuilt.JobNumber
+                                                </td>
+                                                <td>
+                                                    @asBuilt.CULName
+                                                </td>
+                                                <td>
+                                                    @asBuilt.Quantity
+                                                </td>
+                                                <td>
+                                                    @asBuilt.FOC
+                                                </td>
+                                                <td>
+                                                    @asBuilt.Payable
+                                                </td>
+                                                <td>
+                                                    @asBuilt.FOCAmount
+                                                </td>
+                                                <td>
+                                                    @asBuilt.Category
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-primary btn-xs" id="BtnEditAsBuilt_@asBuilt.Id">
+                                                        <i class="fa fa-refresh"></i>
+                                                        Edit AsBuilt
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="PATs">
+                            <h4>PATs</h4>
+
+                            <div id="DivAddPAT"></div>
+                            <div id="DivEditPAT"></div>
+
+                            <div id="DivPATTable">
+                                <table class="table table-striped datatable">
+                                    <thead>
+                                        <tr>
+                                            <td>
+                                                Job Number
+                                            </td>
+                                            <td>
+                                                PAT Status
+                                            </td>
+                                            <td>
+                                                Inspector
+                                            </td>
+                                            <td>
+                                                OIL Cleared Date
+                                            </td>
+                                            <td>
+                                                PAT Completion Date
+                                            </td>
+                                            <td>
+                                                PAT Issue Date
+                                            </td>
+                                            <td>
+                                                FAT Completion date
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var pat in Model.PATs)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @pat.JobNumber
+                                                </td>
+                                                <td>
+                                                    @pat.PATStatusName
+                                                </td>
+                                                <td>
+                                                    @pat.InspectorName
+                                                </td>
+                                                <td>
+                                                    @(pat.OILClearedDate != null ? ((DateTime)pat.OILClearedDate).ToShortDateString() : "")
+                                                </td>
+                                                <td>
+                                                    @(pat.PATCompletionDate != null ? (pat.PATCompletionDate).ToShortDateString() : "")
+                                                </td>
+                                                <td>
+                                                    @(pat.PATIssueDate != null ? ((DateTime)pat.PATIssueDate).ToShortDateString() : "")
+                                                </td>
+                                                <td>
+                                                    @(pat.PATCompletionDate != null ? ((DateTime)pat.PATCompletionDate).ToShortDateString() : "")
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-primary btn-xs" id="BtnEditPAT_@pat.PATId">
+                                                        <i class="fa fa-refresh"></i>
+                                                        Edit PAT
+                                                    </button>
+                                                    &nbsp;
+                                                    <button class="btn btn-success btn-xs" id="BtnPATSupervisors_@pat.PATId">
+                                                        <i class="fa fa-refresh"></i>
+                                                        PAT Supervisors
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                        <div class="tab-pane fade" id="OILs">
+                            <h4>OILs Items</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section customScripts {
+    <script type="text/javascript" src="~/Scripts/App/Jobs/AddAsBuilt.jsx"></script>
+    <script type="text/javascript" src="~/Scripts/App/Jobs/EditAsBuilt.jsx"></script>
+    <script type="text/javascript" src="~/Scripts/App/Jobs/AddPAT.jsx"></script>
+    <script type="text/javascript" src="~/Scripts/App/Jobs/EditPAT.jsx"></script>
+}

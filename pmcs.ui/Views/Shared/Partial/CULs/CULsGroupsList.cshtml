@@ -1,0 +1,47 @@
+﻿@using pmcs.Model.Contracts;
+@model IEnumerable<CULGroup>
+
+<table class="table table-striped datatable">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Key
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Created Date
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var CUL in Model)
+        {
+            <tr>
+                <td>
+                    @CUL.CULGroupId
+                </td>
+                <td>
+                    @CUL.Key
+                </td>
+                <td>
+                    @CUL.Description
+                </td>
+                <td>
+                    @CUL.CreatedDate.ToShortDateString()
+                </td>
+                <td>
+                    <button class="btn btn-primary btn-xs" id="BtnEditCULGroup_@CUL.CULGroupId">
+                        <i class="fa fa-refresh"></i>
+                        Edit CUL Group
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

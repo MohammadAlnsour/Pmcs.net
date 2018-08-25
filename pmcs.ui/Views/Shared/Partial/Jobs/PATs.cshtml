@@ -1,0 +1,70 @@
+﻿@using pmcs.Model.Contracts
+@model IEnumerable<PAT>
+
+<table class="table table-striped datatable">
+    <thead>
+        <tr>
+            <th>
+                Job Number
+            </th>
+            <th>
+                PAT Status
+            </th>
+            <th>
+                Inspector
+            </th>
+            <th>
+                OIL Cleared Date
+            </th>
+            <th>
+                PAT Completion Date
+            </th>
+            <th>
+                PAT Issue Date
+            </th>
+            <th>
+                FAT Completion date
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var pat in Model)
+        {
+            <tr>
+                <td>
+                    @pat.JobNumber
+                </td>
+                <td>
+                    @pat.PATStatusName
+                </td>
+                <td>
+                    @pat.InspectorName
+                </td>
+                <td>
+                    @(pat.OILClearedDate != null ? ((DateTime)pat.OILClearedDate).ToShortDateString() : "")
+                </td>
+                <td>
+                    @(pat.PATCompletionDate != null ? (pat.PATCompletionDate).ToShortDateString() : "")
+                </td>
+                <td>
+                    @(pat.PATIssueDate != null ? ((DateTime)pat.PATIssueDate).ToShortDateString() : "")
+                </td>
+                <td>
+                    @(pat.PATCompletionDate != null ? ((DateTime)pat.PATCompletionDate).ToShortDateString() : "")
+                </td>
+                <td>
+                    <button class="btn btn-primary btn-xs" id="BtnEditPAT_@pat.PATId">
+                        <i class="fa fa-refresh"></i>
+                        Edit PAT
+                    </button>
+                    &nbsp;
+                    <button class="btn btn-success btn-xs" id="BtnPATSupervisors_@pat.PATId">
+                        <i class="fa fa-refresh"></i>
+                        PAT Supervisors
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,241 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2027
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BackEnd", "BackEnd", "{EA461B73-06E2-418D-8EBA-EA927C6CD979}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Auth", "Auth", "{951900ED-B1E0-4791-82E1-2223B71B6CD2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FrontEnd", "FrontEnd", "{68B0B810-2457-4A66-9203-C3A2B726D47F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reporting", "Reporting", "{6B8E26AD-0F1D-4EF1-8E0D-08CCC643CA6A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LoggingNotifications", "LoggingNotifications", "{3E70EB56-C456-4D5F-BAE8-B9AC5B6031DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pmcs.DB", "pmcs.DB\pmcs.DB.csproj", "{C44F8007-9915-4034-A49A-939499D1D26A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pmcs.Repository", "pmcs.Repository\pmcs.Repository.csproj", "{D6DE14A4-BA32-482B-9634-4B383990ABF8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pmcs.Services", "pmcs.Services\pmcs.Services.csproj", "{AB8A469B-852C-45A3-B469-0BA7AE60E6FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pmcs.Auth", "pmcs.Auth\pmcs.Auth.csproj", "{F43522F3-BAE5-489E-AC53-82D7073D6C1D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{866FD5F7-0285-4087-B472-5F3C770F6DDB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pmcs.Services.Tests", "pmcs.Services.Tests\pmcs.Services.Tests.csproj", "{42A8F0BE-887D-48EE-A527-CBE8BB283680}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pmcs.UI", "pmcs.ui\pmcs.UI.csproj", "{81857554-EFD3-4FC9-8791-1953F1FA5754}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pmcs.ui.Tests", "pmcs.ui.Tests\pmcs.ui.Tests.csproj", "{E31EB897-420E-4BE7-B909-70AD15FCF941}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pmcs.Config", "pmcs.Config\pmcs.Config.csproj", "{8FF77716-4F83-4855-AEE5-4B545A8AA2C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pmcs.Config.Tests", "pmcs.Config.Tests\pmcs.Config.Tests.csproj", "{7C7AF8BF-D5D8-4C38-869B-442C8BCCCB9D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{CC9E34AC-3865-4BB1-AF49-2FD412F29E01}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pmcs.Core", "pmcs.Core\pmcs.Core.csproj", "{1E017752-B05D-4F3B-A038-4098F9E6D923}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pmcs.Logs", "pmcs.Logs\pmcs.Logs.csproj", "{7B6B901F-815E-4A7D-823E-FB14DA0F5B2B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pmcs.Reports", "pmcs.Reports\pmcs.Reports.csproj", "{70E05320-FA7E-425A-AB2A-6D7FE51AEE67}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pmcs.Models", "pmcs.Model\pmcs.Models.csproj", "{A21BD2CF-E709-4197-A858-98D89FFEBBD1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pmcs.Business", "pmcs.Business\pmcs.Business.csproj", "{B963D9F2-CE3C-418A-AF1B-080D8BE6CFA0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pmcs.Notifications", "pmcs.Notifications\pmcs.Notifications.csproj", "{45C526BE-AE7C-44A1-B0EE-91C67B10EE6C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeneralTests", "GeneralTests\GeneralTests.csproj", "{AE977F0C-0E90-4F5C-9AFB-06478C2E3109}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BackgroundServices", "BackgroundServices", "{3E192CF0-DC4A-4A49-B9A8-BF1F01A25753}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pmcs.BackgroundService", "pmcs.BackgroundService\pmcs.BackgroundService.csproj", "{54D1FEB5-C187-4D8C-A0C5-485C6CB4FCF0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pmcs.ExcelHandler", "pmcs.ExcelHandler\pmcs.ExcelHandler.csproj", "{69E61E7C-ECA0-4896-BA4E-4156C84250C3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C44F8007-9915-4034-A49A-939499D1D26A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C44F8007-9915-4034-A49A-939499D1D26A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C44F8007-9915-4034-A49A-939499D1D26A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C44F8007-9915-4034-A49A-939499D1D26A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6DE14A4-BA32-482B-9634-4B383990ABF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6DE14A4-BA32-482B-9634-4B383990ABF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6DE14A4-BA32-482B-9634-4B383990ABF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6DE14A4-BA32-482B-9634-4B383990ABF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB8A469B-852C-45A3-B469-0BA7AE60E6FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB8A469B-852C-45A3-B469-0BA7AE60E6FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB8A469B-852C-45A3-B469-0BA7AE60E6FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB8A469B-852C-45A3-B469-0BA7AE60E6FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F43522F3-BAE5-489E-AC53-82D7073D6C1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F43522F3-BAE5-489E-AC53-82D7073D6C1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F43522F3-BAE5-489E-AC53-82D7073D6C1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F43522F3-BAE5-489E-AC53-82D7073D6C1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42A8F0BE-887D-48EE-A527-CBE8BB283680}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42A8F0BE-887D-48EE-A527-CBE8BB283680}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42A8F0BE-887D-48EE-A527-CBE8BB283680}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42A8F0BE-887D-48EE-A527-CBE8BB283680}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81857554-EFD3-4FC9-8791-1953F1FA5754}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81857554-EFD3-4FC9-8791-1953F1FA5754}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81857554-EFD3-4FC9-8791-1953F1FA5754}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81857554-EFD3-4FC9-8791-1953F1FA5754}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E31EB897-420E-4BE7-B909-70AD15FCF941}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E31EB897-420E-4BE7-B909-70AD15FCF941}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E31EB897-420E-4BE7-B909-70AD15FCF941}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E31EB897-420E-4BE7-B909-70AD15FCF941}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FF77716-4F83-4855-AEE5-4B545A8AA2C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FF77716-4F83-4855-AEE5-4B545A8AA2C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FF77716-4F83-4855-AEE5-4B545A8AA2C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FF77716-4F83-4855-AEE5-4B545A8AA2C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C7AF8BF-D5D8-4C38-869B-442C8BCCCB9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C7AF8BF-D5D8-4C38-869B-442C8BCCCB9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C7AF8BF-D5D8-4C38-869B-442C8BCCCB9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C7AF8BF-D5D8-4C38-869B-442C8BCCCB9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E017752-B05D-4F3B-A038-4098F9E6D923}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E017752-B05D-4F3B-A038-4098F9E6D923}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E017752-B05D-4F3B-A038-4098F9E6D923}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E017752-B05D-4F3B-A038-4098F9E6D923}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B6B901F-815E-4A7D-823E-FB14DA0F5B2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B6B901F-815E-4A7D-823E-FB14DA0F5B2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B6B901F-815E-4A7D-823E-FB14DA0F5B2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B6B901F-815E-4A7D-823E-FB14DA0F5B2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70E05320-FA7E-425A-AB2A-6D7FE51AEE67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70E05320-FA7E-425A-AB2A-6D7FE51AEE67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70E05320-FA7E-425A-AB2A-6D7FE51AEE67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70E05320-FA7E-425A-AB2A-6D7FE51AEE67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A21BD2CF-E709-4197-A858-98D89FFEBBD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A21BD2CF-E709-4197-A858-98D89FFEBBD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A21BD2CF-E709-4197-A858-98D89FFEBBD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A21BD2CF-E709-4197-A858-98D89FFEBBD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B963D9F2-CE3C-418A-AF1B-080D8BE6CFA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B963D9F2-CE3C-418A-AF1B-080D8BE6CFA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B963D9F2-CE3C-418A-AF1B-080D8BE6CFA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B963D9F2-CE3C-418A-AF1B-080D8BE6CFA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45C526BE-AE7C-44A1-B0EE-91C67B10EE6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45C526BE-AE7C-44A1-B0EE-91C67B10EE6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45C526BE-AE7C-44A1-B0EE-91C67B10EE6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45C526BE-AE7C-44A1-B0EE-91C67B10EE6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE977F0C-0E90-4F5C-9AFB-06478C2E3109}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE977F0C-0E90-4F5C-9AFB-06478C2E3109}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE977F0C-0E90-4F5C-9AFB-06478C2E3109}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE977F0C-0E90-4F5C-9AFB-06478C2E3109}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54D1FEB5-C187-4D8C-A0C5-485C6CB4FCF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54D1FEB5-C187-4D8C-A0C5-485C6CB4FCF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54D1FEB5-C187-4D8C-A0C5-485C6CB4FCF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54D1FEB5-C187-4D8C-A0C5-485C6CB4FCF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69E61E7C-ECA0-4896-BA4E-4156C84250C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69E61E7C-ECA0-4896-BA4E-4156C84250C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69E61E7C-ECA0-4896-BA4E-4156C84250C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69E61E7C-ECA0-4896-BA4E-4156C84250C3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C44F8007-9915-4034-A49A-939499D1D26A} = {EA461B73-06E2-418D-8EBA-EA927C6CD979}
+		{D6DE14A4-BA32-482B-9634-4B383990ABF8} = {EA461B73-06E2-418D-8EBA-EA927C6CD979}
+		{AB8A469B-852C-45A3-B469-0BA7AE60E6FC} = {EA461B73-06E2-418D-8EBA-EA927C6CD979}
+		{F43522F3-BAE5-489E-AC53-82D7073D6C1D} = {951900ED-B1E0-4791-82E1-2223B71B6CD2}
+		{42A8F0BE-887D-48EE-A527-CBE8BB283680} = {866FD5F7-0285-4087-B472-5F3C770F6DDB}
+		{81857554-EFD3-4FC9-8791-1953F1FA5754} = {68B0B810-2457-4A66-9203-C3A2B726D47F}
+		{E31EB897-420E-4BE7-B909-70AD15FCF941} = {866FD5F7-0285-4087-B472-5F3C770F6DDB}
+		{8FF77716-4F83-4855-AEE5-4B545A8AA2C3} = {68B0B810-2457-4A66-9203-C3A2B726D47F}
+		{7C7AF8BF-D5D8-4C38-869B-442C8BCCCB9D} = {866FD5F7-0285-4087-B472-5F3C770F6DDB}
+		{1E017752-B05D-4F3B-A038-4098F9E6D923} = {CC9E34AC-3865-4BB1-AF49-2FD412F29E01}
+		{7B6B901F-815E-4A7D-823E-FB14DA0F5B2B} = {3E70EB56-C456-4D5F-BAE8-B9AC5B6031DB}
+		{70E05320-FA7E-425A-AB2A-6D7FE51AEE67} = {6B8E26AD-0F1D-4EF1-8E0D-08CCC643CA6A}
+		{A21BD2CF-E709-4197-A858-98D89FFEBBD1} = {CC9E34AC-3865-4BB1-AF49-2FD412F29E01}
+		{B963D9F2-CE3C-418A-AF1B-080D8BE6CFA0} = {EA461B73-06E2-418D-8EBA-EA927C6CD979}
+		{45C526BE-AE7C-44A1-B0EE-91C67B10EE6C} = {3E70EB56-C456-4D5F-BAE8-B9AC5B6031DB}
+		{AE977F0C-0E90-4F5C-9AFB-06478C2E3109} = {866FD5F7-0285-4087-B472-5F3C770F6DDB}
+		{54D1FEB5-C187-4D8C-A0C5-485C6CB4FCF0} = {3E192CF0-DC4A-4A49-B9A8-BF1F01A25753}
+		{69E61E7C-ECA0-4896-BA4E-4156C84250C3} = {CC9E34AC-3865-4BB1-AF49-2FD412F29E01}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9F2D1D94-5B94-41F7-94F2-69C21A70C6C1}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 19
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://mohammadalnsour.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = pmcs.Auth\\pmcs.Auth.csproj
+		SccProjectTopLevelParentUniqueName1 = PMCS.NET.sln
+		SccProjectName1 = pmcs.Auth
+		SccLocalPath1 = pmcs.Auth
+		SccProjectUniqueName2 = pmcs.Config.Tests\\pmcs.Config.Tests.csproj
+		SccProjectTopLevelParentUniqueName2 = PMCS.NET.sln
+		SccProjectName2 = pmcs.Config.Tests
+		SccLocalPath2 = pmcs.Config.Tests
+		SccProjectUniqueName3 = pmcs.Config\\pmcs.Config.csproj
+		SccProjectTopLevelParentUniqueName3 = PMCS.NET.sln
+		SccProjectName3 = pmcs.Config
+		SccLocalPath3 = pmcs.Config
+		SccProjectUniqueName4 = pmcs.Core\\pmcs.Core.csproj
+		SccProjectTopLevelParentUniqueName4 = PMCS.NET.sln
+		SccProjectName4 = pmcs.Core
+		SccLocalPath4 = pmcs.Core
+		SccProjectUniqueName5 = pmcs.DB\\pmcs.DB.csproj
+		SccProjectTopLevelParentUniqueName5 = PMCS.NET.sln
+		SccProjectName5 = pmcs.DB
+		SccLocalPath5 = pmcs.DB
+		SccProjectUniqueName6 = pmcs.Logs\\pmcs.Logs.csproj
+		SccProjectTopLevelParentUniqueName6 = PMCS.NET.sln
+		SccProjectName6 = pmcs.Logs
+		SccLocalPath6 = pmcs.Logs
+		SccProjectUniqueName7 = pmcs.Model\\pmcs.Models.csproj
+		SccProjectTopLevelParentUniqueName7 = PMCS.NET.sln
+		SccProjectName7 = pmcs.Model
+		SccLocalPath7 = pmcs.Model
+		SccProjectUniqueName8 = pmcs.Reports\\pmcs.Reports.csproj
+		SccProjectTopLevelParentUniqueName8 = PMCS.NET.sln
+		SccProjectName8 = pmcs.Reports
+		SccLocalPath8 = pmcs.Reports
+		SccProjectUniqueName9 = pmcs.Repository\\pmcs.Repository.csproj
+		SccProjectTopLevelParentUniqueName9 = PMCS.NET.sln
+		SccProjectName9 = pmcs.Repository
+		SccLocalPath9 = pmcs.Repository
+		SccProjectUniqueName10 = pmcs.Services.Tests\\pmcs.Services.Tests.csproj
+		SccProjectTopLevelParentUniqueName10 = PMCS.NET.sln
+		SccProjectName10 = pmcs.Services.Tests
+		SccLocalPath10 = pmcs.Services.Tests
+		SccProjectUniqueName11 = pmcs.Services\\pmcs.Services.csproj
+		SccProjectTopLevelParentUniqueName11 = PMCS.NET.sln
+		SccProjectName11 = pmcs.Services
+		SccLocalPath11 = pmcs.Services
+		SccProjectUniqueName12 = pmcs.ui.Tests\\pmcs.ui.Tests.csproj
+		SccProjectTopLevelParentUniqueName12 = PMCS.NET.sln
+		SccProjectName12 = pmcs.ui.Tests
+		SccLocalPath12 = pmcs.ui.Tests
+		SccProjectUniqueName13 = pmcs.ui\\pmcs.UI.csproj
+		SccProjectTopLevelParentUniqueName13 = PMCS.NET.sln
+		SccProjectName13 = pmcs.ui
+		SccLocalPath13 = pmcs.ui
+		SccProjectUniqueName14 = pmcs.Business\\pmcs.Business.csproj
+		SccProjectTopLevelParentUniqueName14 = PMCS.NET.sln
+		SccProjectName14 = pmcs.Business
+		SccLocalPath14 = pmcs.Business
+		SccProjectUniqueName15 = pmcs.Notifications\\pmcs.Notifications.csproj
+		SccProjectTopLevelParentUniqueName15 = PMCS.NET.sln
+		SccProjectName15 = pmcs.Notifications
+		SccLocalPath15 = pmcs.Notifications
+		SccProjectUniqueName16 = GeneralTests\\GeneralTests.csproj
+		SccProjectTopLevelParentUniqueName16 = PMCS.NET.sln
+		SccProjectName16 = GeneralTests
+		SccLocalPath16 = GeneralTests
+		SccProjectUniqueName17 = pmcs.BackgroundService\\pmcs.BackgroundService.csproj
+		SccProjectTopLevelParentUniqueName17 = PMCS.NET.sln
+		SccProjectName17 = pmcs.BackgroundService
+		SccLocalPath17 = pmcs.BackgroundService
+		SccProjectUniqueName18 = pmcs.ExcelHandler\\pmcs.ExcelHandler.csproj
+		SccProjectTopLevelParentUniqueName18 = PMCS.NET.sln
+		SccProjectName18 = pmcs.ExcelHandler
+		SccLocalPath18 = pmcs.ExcelHandler
+	EndGlobalSection
+EndGlobal

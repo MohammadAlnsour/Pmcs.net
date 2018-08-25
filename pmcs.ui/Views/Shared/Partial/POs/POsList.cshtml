@@ -1,0 +1,85 @@
+﻿@using pmcs.Model.Contracts;
+@model IEnumerable<POs>
+
+<table class="table table-striped datatable">
+    <thead>
+        <tr>
+            <th>
+                PO Number
+            </th>
+            @*<td>
+                    PO Gross
+                </td>*@
+            <th>
+                Project
+            </th>
+            <th>
+                Contractor
+            </th>
+            <th>
+                PO Date
+            </th>
+            <th>
+                CUL Group
+            </th>
+            <th>
+                PO Status
+            </th>
+            <th>
+                Task / Milestone
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var PO in Model)
+        {
+            <tr>
+                <td>
+                    <a href="@Url.Action("POsDetails", "Contracts", new { id = PO.PoId })#jobs">
+                        @PO.PONumber
+                    </a>
+                </td>
+                @*<td>
+                        <a href="@Url.Action("POsDetails", "Contracts", new { id = PO.PoId })#jobs">
+                            @PO.PoGross
+                        </a>
+                    </td>*@
+                <td>
+                    @PO.ProjectName
+                </td>
+                <td>
+                    @PO.ContractorName
+                </td>
+                <td>
+                    @(PO.PODate != null ? ((DateTime)PO.PODate).ToShortDateString() : "")
+                </td>
+                <td>
+                    @PO.CULGroupName
+                </td>
+                <td>
+                    @PO.POStatusName
+                </td>
+                <td>
+                    @PO.ProjectTaskName
+                </td>
+                <td>
+                    <button class="btn btn-primary btn-xs" id="BtnEditPO_@PO.PoId">
+                        <i class="fa fa-refresh"></i>
+                        Edit PO
+                    </button>
+                    &nbsp;
+                    <button class="btn btn-warning btn-xs" id="BtnShowJobs_@PO.PoId">
+                        <i class="fa fa-cubes"></i>
+                        PO Jobs
+                    </button>
+                    &nbsp;
+                    <button class="btn btn-danger btn-xs" id="BtnShowBOQ_@PO.PoId">
+                        <i class="fa fa-cubes"></i>
+                        BoQs
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

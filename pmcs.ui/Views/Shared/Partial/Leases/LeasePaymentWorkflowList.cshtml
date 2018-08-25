@@ -1,0 +1,81 @@
+﻿@using pmcs.Model.Contracts
+@model IEnumerable<LeasePaymentTransactionApprovalWorkflow>
+
+<table id="TablePaymentWorkflow" class="table table-striped datatable">
+    <thead>
+        <tr>
+            <th>
+                Lease Number
+            </th>
+            <th>
+                Payment Number
+            </th>
+            <th>
+                Stage
+            </th>
+            <th>
+                Received date
+            </th>
+            <th>
+                Processed date
+            </th>
+            <th>
+                Owner name
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+                Notes
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var workflow in Model)
+        {
+            <tr>
+                <td>
+                    @workflow.LeaseContractNumber
+                </td>
+                <td>
+                    @workflow.TransactionId
+                </td>
+                <td>
+                    @workflow.StageName
+                </td>
+                <td>
+                    @workflow.ReceivedDateString
+                </td>
+                <td>
+                    @(workflow.ProcessedDate == null ? "-" : workflow.ProcessedDate.Value.ToShortDateString())
+                </td>
+                <td>
+                    @(String.IsNullOrEmpty(workflow.OwnerName) ? "-" : workflow.OwnerName)
+                </td>
+                <td>
+                    @if (workflow.Status == 1 || workflow.Status == 2)
+                    {
+                        <label class='label label-warning'>@workflow.StatusName</label>
+                    }
+                    else
+                    {
+                        <label class='label label-info'>@workflow.StatusName</label>
+                    }
+                </td>
+                <td>
+                    @(String.IsNullOrEmpty(workflow.Remarks) ? "-" : workflow.Remarks)
+                </td>
+                <td>
+                    @if (!workflow.IsFinished)
+                    {
+                        <button class="btn btn-primary btn-xs" id="BtnApproveRejectWorkflow_@workflow.Id">
+                            <i class="fa fa-check-square"></i>
+                            Action
+                        </button>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

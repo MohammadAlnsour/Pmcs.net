@@ -1,0 +1,117 @@
+﻿@using pmcs.Model.Documents;
+@model IEnumerable<Document>
+
+<table id="TblInbox" class="table table-striped datatable">
+    <thead>
+        <tr>
+            <th>
+                Document Subject
+            </th>
+            <th>
+                Document Type
+            </th>
+            <th>
+                Sender Name
+            </th>
+            <th>
+                Receiver Name
+            </th>
+            <th>
+                Receive Date
+            </th>
+            <th>
+                Document Status
+            </th>
+            <th>
+                Document file
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var kvp in Model)
+        {
+            <tr>
+                <td>
+                    @kvp.DocSubject
+                </td>
+                <td>
+                    @switch (kvp.DocumentType)
+                    {
+                        case 1:
+                            <label class="alert bg-danger" style="padding:2px 8px 2px 8px">
+                                <i class="fa fa-file-pdf-o"></i>
+                                @kvp.DocumentTypeName
+                            </label>
+                            break;
+                        case 2:
+                            <label class="alert bg-info" style="padding:2px 8px 2px 8px">
+                                <i class="fa fa-file-word-o"></i>
+                                @kvp.DocumentTypeName
+                            </label>
+                            break;
+                        case 3:
+                            <label class="alert bg-teal" style="padding:2px 8px 2px 8px">
+                                <i class="fa fa-file-excel-o"></i>
+                                @kvp.DocumentTypeName
+                            </label>
+                            break;
+                        case 4:
+                            <label class="alert bg-warning" style="padding:2px 8px 2px 8px">
+                                <i class="fa fa-file-image-o"></i>
+                                @kvp.DocumentTypeName
+                            </label>
+                            break;
+                    }
+                </td>
+                <td>
+                    @kvp.SenderName
+                </td>
+                <td>
+                    @kvp.ReceiverName
+                </td>
+                <td>
+                    @kvp.SendDate.ToShortDateString()
+                </td>
+                <td>
+                    @switch (kvp.DocumentStatus)
+                    {
+                        case 1:
+                            <label class="alert bg-teal" style="padding:2px 8px 2px 8px">
+                                @kvp.DocumentStatusName
+                            </label>
+                            break;
+                        case 2:
+                            <label class="alert bg-warning" style="padding:2px 8px 2px 8px">
+                                @kvp.DocumentStatusName
+                            </label>
+                            break;
+                        case 3:
+                            <label class="alert bg-info" style="padding:2px 8px 2px 8px">
+                                @kvp.DocumentStatusName
+                            </label>
+                            break;
+                    }
+                </td>
+                <td>
+                    <a href="@kvp.DocumentPath" target="_blank">
+                        @kvp.DocumentPath.Substring(kvp.DocumentPath.LastIndexOf("/") + 1)
+                    </a>
+                </td>
+                <td>
+                    <button class="btn btn-primary btn-xs" id="BtnAddReply_@kvp.DocumentId">
+                        <i class="fa fa-reply"></i>
+                        Reply
+                    </button>
+                </td>
+                <td>
+                    <button class="btn btn-primary btn-xs" id="BtnViewReplies_@kvp.DocumentId">
+                        <i class="fa fa-reply-all"></i>
+                        View Replies
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

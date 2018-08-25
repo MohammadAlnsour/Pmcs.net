@@ -1,0 +1,599 @@
+﻿@using pmcs.Model.Contracts;
+@using pmcs.Core
+@model pmcs.Model.Contracts.Site
+
+@{
+    ViewBag.Title = "PMCS v1.2 - Site : " + Model.SiteName + "  - Details View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <ol class="breadcrumb">
+        <li><a href="#"><em class="fa fa-home"></em></a></li>
+        <li>Contracts</li>
+        <li><a href="@Url.Action("Sites","Contracts")">Sites</a></li>
+        <li class="active">@Model.SiteName</li>
+    </ol>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">@Model.SiteName - Details View</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default ">
+            <div class="panel-heading">
+                @Model.SiteName
+                <span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span>
+            </div>
+            <div class="panel-body">
+                <div class="panel-body tabs">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#basic" data-toggle="tab" aria-expanded="true">Basic Details</a></li>
+                        <li class=""><a href="#config" data-toggle="tab" aria-expanded="false">Configuration</a></li>
+                        <li class=""><a href="#Ops" data-toggle="tab" aria-expanded="false">Operations</a></li>
+                        <li class=""><a href="#Contact" data-toggle="tab" aria-expanded="false">Contact Inforamation</a></li>
+                        <li class=""><a href="#Antenna" data-toggle="tab" aria-expanded="false">Antenna Details</a></li>
+                        <li class=""><a href="#Leases" data-toggle="tab" aria-expanded="false">Lease Contracts</a></li>
+                        <li class=""><a href="#Attachments" data-toggle="tab" aria-expanded="false">File Attachments</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade active in" id="basic">
+                            <h4>Basic Site Details</h4>
+                            <br />
+                            <p>
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td style=" width: '15%' ">
+                                                Site Number : *
+                                            </td>
+                                            <td>
+                                                <span>@Model.SiteNumber</span>
+                                            </td>
+                                            <td>&nbsp;</td>
+                                            <td style=" width: '15%' ">
+                                                Site Type : *
+                                            </td>
+                                            <td>
+                                                <span>@Model.SiteTypeName</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style=" width: '15%' ">
+                                                Site Name : *
+                                            </td>
+                                            <td>
+                                                <span>@Model.SiteName</span>
+                                            </td>
+                                            <td>&nbsp;</td>
+                                            <td style=" width: '15%' ">
+                                                Site Priority : *
+                                            </td>
+                                            <td>
+                                                <span>
+                                                    @switch ((SitePriority)Convert.ToInt32(Model.SitePriority))
+                                                    {
+                                                        case SitePriority.Average:
+                                                            <span>Average</span>
+                                                            break;
+                                                        case SitePriority.Low:
+                                                            <span>Low</span>
+                                                            break;
+                                                        case SitePriority.High:
+                                                            <span>High</span>
+                                                            break;
+                                                    }
+                                                    @*@Model.SitePriority*@
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style=" width: '15%' ">
+                                                Site Owner : *
+                                            </td>
+                                            <td>
+                                                <span>@Model.SiteOwnerName</span>
+                                            </td>
+                                            <td>&nbsp;</td>
+                                            <td style=" width: '15%' ">
+                                                Gevernorate :
+                                            </td>
+                                            <td>
+                                                <span>@Model.GovernorateName</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style=" width: '15%' ">
+                                                District :
+                                            </td>
+                                            <td>
+                                                <span>@Model.DistrictName</span>
+                                            </td>
+                                            <td>&nbsp;</td>
+                                            <td style=" width: '15%' ">
+                                                Block Number :
+                                            </td>
+                                            <td>
+                                                <span>@Model.BlockNumber</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style=" width: '15%' ">
+                                                Street Number :
+                                            </td>
+                                            <td>
+                                                <span>@Model.StreetNumber</span>
+                                            </td>
+                                            <td>&nbsp;</td>
+                                            <td style=" width: '15%' ">
+                                                Sub Street Number :
+                                            </td>
+                                            <td>
+                                                <span>@Model.SubStreetNumber</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style=" width: '15%' ">
+                                                Building Number :
+                                            </td>
+                                            <td>
+                                                <span id="TxtBuildingNumber" name="TxtBuildingNumber" />
+                                            </td>
+                                            <td>&nbsp;</td>
+                                            <td style=" width: '15%' ">
+                                                Building Name :
+                                            </td>
+                                            <td>
+                                                <span>@Model.BuildingName</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style=" width: '15%' ">
+                                                Latituade : *
+                                            </td>
+                                            <td>
+                                                <span>@Model.Latitude</span>
+                                            </td>
+                                            <td>&nbsp;</td>
+                                            <td style=" width: '15%' ">
+                                                Longitude : *
+                                            </td>
+                                            <td>
+                                                <span>@Model.Longtitude</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colSpan="5">
+                                                <div id="GoogleMapAddMarker" style="width:100%; height:600px;"></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colSpan="2">
+                                                &nbsp;
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </p>
+                        </div>
+                        <div class="tab-pane fade" id="config">
+                            <h4>Site Configuration</h4>
+                            <br />
+                            <p>
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td>Equipment Vendor</td>
+                                            <td>
+                                                <select id="VendorId" class="selectpicker" data-live-search="true" data-live-search-placeholder="Search"></select>
+                                            </td>
+                                            <td>&nbsp;&nbsp;</td>
+                                            <td>RSL</td>
+                                            <td>
+                                                <input type="text" class="form-control" id="RSL" maxlength="50" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>ILA</td>
+                                            <td>
+                                                <input type="text" class="form-control" id="ILA" maxlength="50" />
+                                            </td>
+                                            <td>&nbsp;&nbsp;</td>
+                                            <td>Shelter Type</td>
+                                            <td>
+                                                <select id="ShelterTypeId" class="selectpicker" data-live-search="true" data-live-search-placeholder="Search"></select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>BR Config</td>
+                                            <td>
+                                                <input type="text" class="form-control" id="BRConfig" maxlength="50" />
+                                            </td>
+                                            <td>&nbsp;&nbsp;</td>
+                                            <td>BRs InService</td>
+                                            <td>
+                                                <input type="number" class="form-control" id="BRsInService" maxlength="15" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Quad BRs</td>
+                                            <td>
+                                                <input type="number" class="form-control" id="QuadBRs" maxlength="15" />
+                                            </td>
+                                            <td>&nbsp;&nbsp;</td>
+                                            <td>iSC Status</td>
+                                            <td>
+                                                <input type="number" class="form-control" id="iSCStatus" maxlength="15" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Structure Type</td>
+                                            <td>
+                                                <select id="StructureTypeId" class="selectpicker" data-live-search="true" data-live-search-placeholder="Search"></select>
+                                            </td>
+                                            <td>&nbsp;&nbsp;</td>
+                                            <td>Number Of RF Racks</td>
+                                            <td>
+                                                <input type="number" class="form-control" id="NumberOfRFRacks" maxlength="15" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Cell Id</td>
+                                            <td>
+                                                <input type="text" class="form-control" id="CellId" maxlength="100" />
+                                            </td>
+                                            <td>&nbsp;&nbsp;</td>
+                                            <td>DLA</td>
+                                            <td>
+                                                <input type="text" class="form-control" id="DLA" maxlength="100" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Number Of Sectors</td>
+                                            <td>
+                                                <input type="number" class="form-control" id="NumberOfSectors" maxlength="15" />
+                                            </td>
+                                            <td>&nbsp;&nbsp;</td>
+                                            <td>BRs Equipped</td>
+                                            <td>
+                                                <input type="number" class="form-control" id="BRsEquipped" maxlength="15" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Legacy BRs</td>
+                                            <td>
+                                                <input type="number" class="form-control" id="LegacyBRs" maxlength="15" />
+                                            </td>
+                                            <td>&nbsp;&nbsp;</td>
+                                            <td>iSC Status Active</td>
+                                            <td>
+                                                <input type="number" class="form-control" id="iSCStatusActive" maxlength="15" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>BOT Assignment</td>
+                                            <td>
+                                                <input type="text" class="form-control" id="BOTAssignment" maxlength="100" />
+                                            </td>
+                                            <td>&nbsp;&nbsp;</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>
+                                                <button id="BtnSaveSiteConfiguration" class="btn btn-primary">Save Configuration</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </p>
+                        </div>
+                        <div class="tab-pane fade" id="Ops">
+                            <h4>Site Operations</h4>
+                            <br />
+                            <p>
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td>Operation Center</td>
+                                            <td>
+                                                <select id="OperationCenterId" class="selectpicker" data-live-search="true" data-live-search-placeholder="Search"></select>
+                                            </td>
+                                            <td>&nbsp;&nbsp;</td>
+                                            <td>Site Rent</td>
+                                            <td>
+                                                <select id="SiteRent" class="form-control">
+                                                    <option value="true">Yes</option>
+                                                    <option value="false">No</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>E1 Rent</td>
+                                            <td>
+                                                <select id="E1Rent" class="form-control">
+                                                    <option value="true">Yes</option>
+                                                    <option value="false">No</option>
+                                                </select>
+                                            </td>
+                                            <td>&nbsp;&nbsp;</td>
+                                            <td>Power Sharing Rent</td>
+                                            <td>
+                                                <select id="PowerSharingRent" class="form-control">
+                                                    <option value="true">Yes</option>
+                                                    <option value="false">No</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>OMC Display</td>
+                                            <td>
+                                                <input type="text" class="form-control" id="OMCDisplay" maxlength="100" />
+                                            </td>
+                                            <td>&nbsp;&nbsp;</td>
+                                            <td>BSC Name</td>
+                                            <td>
+                                                <input type="text" class="form-control" id="BSCName" maxlength="100" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Power Type</td>
+                                            <td>
+                                                <select id="PowerTypeId" class="selectpicker" data-live-search="true" data-live-search-placeholder="Search"></select>
+                                            </td>
+                                            <td>&nbsp;&nbsp;</td>
+                                            <td>Site Accessibility</td>
+                                            <td>
+                                                <select id="SiteAccessibilityId" class="selectpicker" data-live-search="true" data-live-search-placeholder="Search"></select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>
+                                                <button id="BtnSaveOperations" class="btn btn-primary">Save Operations</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </p>
+                        </div>
+                        <div class="tab-pane fade" id="Contact">
+                            <h4>Site Contact</h4>
+                            <br />
+                            <p>
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td>Site Owner Name</td>
+                                            <td>
+                                                <input type="text" class="form-control" id="SiteOwnerName" maxlength="100" />
+                                            </td>
+                                            <td>&nbsp;&nbsp;</td>
+                                            <td>Address1</td>
+                                            <td>
+                                                <input type="text" class="form-control" id="Address1" maxlength="100" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Address2</td>
+                                            <td>
+                                                <input type="text" class="form-control" id="Address2" maxlength="100" />
+                                            </td>
+                                            <td>&nbsp;&nbsp;</td>
+                                            <td>Directions</td>
+                                            <td>
+                                                <input type="text" class="form-control" id="Directions" maxlength="100" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Contact Person</td>
+                                            <td>
+                                                <input type="text" class="form-control" id="ContactPerson" maxlength="100" />
+                                            </td>
+                                            <td>&nbsp;&nbsp;</td>
+                                            <td>Mobile</td>
+                                            <td>
+                                                <input type="text" class="form-control" id="Mobile" maxlength="15" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Email</td>
+                                            <td>
+                                                <input type="text" class="form-control" id="Email" maxlength="50" />
+                                            </td>
+                                            <td>&nbsp;&nbsp;</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>
+                                                <button id="BtnSaveContacts" class="btn btn-primary">Save Contacts</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </p>
+                        </div>
+                        <div class="tab-pane fade" id="Antenna">
+                            <h4>Antenna Details</h4>
+                            <br />
+                            <p>
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td>Atenna Height</td>
+                                            <td>
+                                                <input type="number" class="form-control" id="AtennaHeight" maxlength="10" />
+                                            </td>
+                                            <td>&nbsp;&nbsp;</td>
+                                            <td>Atenna Model</td>
+                                            <td>
+                                                <input type="text" class="form-control" id="AtennaModel" maxlength="100" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Atenna Azimuth</td>
+                                            <td>
+                                                <input type="text" class="form-control" id="AtennaAzimuth" maxlength="100" />
+                                            </td>
+                                            <td>&nbsp;&nbsp;</td>
+                                            <td>Tilt Per Sectore</td>
+                                            <td>
+                                                <input type="text" class="form-control" id="TiltPerSectore" maxlength="100" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Antenna Manufacturer</td>
+                                            <td>
+                                                <input type="text" class="form-control" id="AntennaManufacturer" maxlength="100" />
+                                            </td>
+                                            <td>&nbsp;&nbsp;</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>
+                                                <button id="BtnSaveAntenna" class="btn btn-primary">Save Antenna</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </p>
+                        </div>
+                        <div class="tab-pane fade" id="Leases">
+                            <h4>Lease Contracts</h4>
+                            <br />
+                            <p>
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <td>
+                                                Lease Contract Number
+                                            </td>
+                                            <td>
+                                                Site Owner
+                                            </td>
+                                            <td>
+                                                Total Lease Amount
+                                            </td>
+                                            <td>
+                                                Start Lease Date
+                                            </td>
+                                            <td>
+                                                End Lease Date
+                                            </td>
+                                            <td>
+                                                Number Of Payments
+                                            </td>
+                                            <td>
+                                                Amount Per Payment
+                                            </td>
+                                            <td>
+                                                Payment Frequency
+                                            </td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @*@foreach (var contract in Model.LeaseContracts)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        <a href="@Url.Action("", "")">
+                                                            @contract.LeaseContractNumber
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        @contract.SiteOwnerName
+                                                    </td>
+                                                    <td>
+                                                        @(contract.TotalLeaseAmount != null ? Math.Round(Convert.ToDouble(contract.TotalLeaseAmount), 3) : 0.0)
+                                                    </td>
+                                                    <td>
+                                                        @contract.LeaseStartDate.ToShortDateString()
+                                                    </td>
+                                                    <td>
+                                                        @contract.LeaseEndDate.ToShortDateString()
+                                                    </td>
+                                                    <td>
+                                                        @contract.NumberOfPayments
+                                                    </td>
+                                                    <td>
+                                                        @(contract.AmountPerPayment != null ? Math.Round(Convert.ToDouble(contract.AmountPerPayment), 3) : 0.0)
+                                                    </td>
+                                                    <td>
+                                                        @contract.PaymentFrequency
+                                                    </td>
+                                                </tr>
+                                            }*@
+                                    </tbody>
+                                </table>
+                            </p>
+                        </div>
+                        <div class="tab-pane fade" id="Attachments">
+                            <h4>Attachments</h4>
+                            <br />
+                            <p>
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <td>
+                                                File Name
+                                            </td>
+                                            <td>
+                                                Created Date
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section customScripts {
+
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfJhggLgtrLa2roh5tYq3gkKszAefqmhQ"></script>
+    <script type="text/javascript">
+
+        var lat = Number(@Model.Latitude);
+        var log = Number(@Model.Longtitude);
+        var markerObj = { lat: lat, lng: log };
+
+        var map;
+        var marker = null;
+        map = new google.maps.Map(document.getElementById('GoogleMapAddMarker'), {
+            center: { lat: lat, lng: log },
+            zoom: 8,
+            mapTypeId: 'roadmap'
+        });
+        marker = new google.maps.Marker({
+            position: markerObj,
+            map: map
+        });
+        marker.setPosition(markerObj);
+
+    </script>
+}

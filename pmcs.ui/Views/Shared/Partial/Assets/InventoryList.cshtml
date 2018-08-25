@@ -1,0 +1,53 @@
+﻿@using pmcs.Model.Assets
+@model IEnumerable<SiteInventory>
+
+<div id="DivEntityList">
+    <table class="table table-striped datatable">
+        <thead>
+            <tr>
+                <th>
+                    Site
+                </th>
+                <th>
+                    Inventory Date
+                </th>
+                <th>
+                    Remarks
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var inventory in Model)
+            {
+                <tr>
+                    <td>
+                        <a href="@Url.Action("InvoiceDetails", "Financial", new { id = inventory.InventoryId, title = inventory.InventoryId })">
+                            @inventory.SiteName
+                        </a>
+                    </td>
+                    <td>
+                        @(inventory.InventoryDate != null ? ((DateTime)inventory.InventoryDate).ToShortDateString() : "")
+                    </td>
+                    <td>
+                        @inventory.Remarks
+                    </td>
+                    <td>
+                        <button id="BtnEdit_@inventory.InventoryId" class="btn btn-primary btn-xs">
+                            <i class="fa fa-pencil-square-o"></i>
+                            Edit Inventory
+                        </button>
+                        <a class="btn btn-info btn-xs" href="@Url.Action("InventoryDetails", "Assets", new { id = inventory.InventoryId , title = inventory.SiteName })">
+                            <i class="fa fa-info"></i>
+                            View Details
+                        </a>
+                        <a class="btn btn-warning btn-xs" href="@Url.Action("InventoryDetails", "Assets", new { id = inventory.InventoryId , title = inventory.SiteId })">
+                            <i class="fa fa-cubes"></i>
+                            Inventory Items
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

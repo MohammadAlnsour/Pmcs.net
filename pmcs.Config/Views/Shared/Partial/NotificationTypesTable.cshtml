@@ -1,0 +1,25 @@
+﻿@model IEnumerable<pmcs.Model.Config.NotificationTypesModel>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Notification Type</th>
+            <th>Created Date</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var notification in Model)
+        {
+            <tr>
+                <td>@notification.TypeId</td>
+                <td>@notification.NotificationTypeName</td>
+                <td>@notification.CreatedDate.ToShortDateString()</td>
+                <td>
+                    <button class="btn btn-info btn-fill btn-xs" id="BtnEditText_@notification.TypeId"><i class="ti-reload"></i> &nbsp;Edit Notification Text</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

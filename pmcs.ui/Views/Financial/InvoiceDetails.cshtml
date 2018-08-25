@@ -1,0 +1,450 @@
+﻿@using pmcs.Model.ViewModels
+@model InvoiceDetailsViewModel
+
+@{
+    ViewBag.Title = "PMCS v1.2 - Invoice : " + Model.Invoice.InvoiceNumber;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <ol class="breadcrumb">
+        <li><a href="#"><em class="fa fa-home"></em></a></li>
+        <li>Invoices</li>
+        <li><a href="@Url.Action("Invoices","Financial")">Invoices</a></li>
+        <li class="active">@Model.Invoice.InvoiceNumber</li>
+    </ol>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">@Model.Invoice.InvoiceNumber - Invoice</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default ">
+            <div class="panel-heading">
+                Invoice @Model.Invoice.InvoiceNumber
+                <span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span>
+            </div>
+            <div class="panel-body">
+
+                <h4>Basic Invoice Details</h4>
+                <br />
+                <p>
+                    <table class="table" style="width:100%">
+                        <tbody>
+                            <tr>
+                                <td style=" width: 20% ">
+                                    Invoice Number :
+                                </td>
+                                <td>
+                                    <span>@Model.Invoice.InvoiceNumber</span>
+                                </td>
+                                <td>&nbsp;</td>
+                                <td style="width: 15%">
+                                    Purchase Order :
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("POsDetails","Contracts", new { id = Model.Invoice.POId, title = HttpUtility.HtmlEncode(Model.Invoice.PONumber) })">
+                                        <span>@Model.Invoice.PONumber</span>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style=" width: 20% ">
+                                    Task(Milestone) :
+                                </td>
+                                <td>
+                                    <span>@Model.Invoice.TaskMilestoneName</span>
+                                </td>
+                                <td>&nbsp;</td>
+                                <td style=" width: 20% ">
+                                    Classification :
+                                </td>
+                                <td>
+                                    <span>@Model.Invoice.ClassificationName</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style=" width: 20% ">
+                                    Invoice Date :
+                                </td>
+                                <td>
+                                    <span>@(Model.Invoice.CreatedDate.ToShortDateString())</span>
+                                </td>
+                                <td>&nbsp;</td>
+                                <td style=" width: 20% ">
+                                    Description Text :
+                                </td>
+                                <td>
+                                    <span>@Model.Invoice.DescriptionText</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style=" width: 20% ">
+                                    Credit Note Number :
+                                </td>
+                                <td>
+                                    <span>@(Model.Invoice.CreditNoteNumber)</span>
+                                </td>
+                                <td>&nbsp;</td>
+                                <td style=" width: 20% ">
+                                    Exclude Aging :
+                                </td>
+                                <td>
+                                    <span>@(Model.Invoice.ExcludeAging ? "Yes" : "No")</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style=" width: 20% ">
+                                    Exclude Aging Reasons :
+                                </td>
+                                <td>
+                                    <span>@Model.Invoice.ExcludeAgingReasons</span>
+                                </td>
+                                <td>&nbsp;</td>
+                                <td style=" width: 20% ">
+                                    Gross CUL Payable :
+                                </td>
+                                <td>
+                                    <span>@Model.Invoice.GrossCULPayable</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style=" width: 20% ">
+                                    Special Discount :
+                                </td>
+                                <td>
+                                    <span>@Model.Invoice.SpecialDiscount</span>
+                                </td>
+                                <td>&nbsp;</td>
+                                <td style=" width: 20% ">
+                                    After Discount :
+                                </td>
+                                <td>
+                                    <span>@(Model.Invoice.AfterDiscount)</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style=" width: 20% ">
+                                    Less Percent Discount :
+                                </td>
+                                <td>
+                                    <span>@Model.Invoice.LessPercentDiscount</span>
+                                </td>
+                                <td>&nbsp;</td>
+                                <td style=" width: 20% ">
+                                    After Less Discount :
+                                </td>
+                                <td>
+                                    <span>@Model.Invoice.AfterLessDiscount</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style=" width: 20% ">
+                                    Discount On Net :
+                                </td>
+                                <td>
+                                    <span>@Model.Invoice.DiscountOnNet</span>
+                                </td>
+                                <td>&nbsp;</td>
+                                <td style=" width: 20% ">
+                                    Percentage Claimed :
+                                </td>
+                                <td>
+                                    <span>@Model.Invoice.PercentageClaimed</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style=" width: 20% ">
+                                    Advance Payment :
+                                </td>
+                                <td>
+                                    <span>@Model.Invoice.AdvancePayment</span>
+                                </td>
+                                <td>&nbsp;</td>
+                                <td style=" width: 20% ">
+                                    Total Previous Claim :
+                                </td>
+                                <td>
+                                    <span>@Model.Invoice.TotalPreviousClaim</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style=" width: 20% ">
+                                    Job Level Discount :
+                                </td>
+                                <td>
+                                    <span>@Model.Invoice.JobLevelDiscount</span>
+                                </td>
+                                <td>&nbsp;</td>
+                                <td style=" width: 20% ">
+                                    Job Level Advance :
+                                </td>
+                                <td>
+                                    <span>@Model.Invoice.JobLevelAdvance</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style=" width: 20% ">
+                                    Job Level Credit Note :
+                                </td>
+                                <td>
+                                    <span>@Model.Invoice.JobLevelCreditNote</span>
+                                </td>
+                                <td>&nbsp;</td>
+                                <td style=" width: 20% ">
+                                    Less Retention :
+                                </td>
+                                <td>
+                                    <span>@Model.Invoice.LessRetention</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style=" width: 20% ">
+                                    Less Free Of Charge :
+                                </td>
+                                <td>
+                                    <span>@Model.Invoice.LessFreeOfCharge</span>
+                                </td>
+                                <td>&nbsp;</td>
+                                <td style=" width: 20% ">
+                                    Less Penality :
+                                </td>
+                                <td>
+                                    <span>@Model.Invoice.LessPenality</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style=" width: 20% ">
+                                    Less Adjust Deduction :
+                                </td>
+                                <td>
+                                    <span>@Model.Invoice.LessAdjustDeduction</span>
+                                </td>
+                                <td>&nbsp;</td>
+                                <td style=" width: 20% ">
+                                    Deduction Remarks :
+                                </td>
+                                <td>
+                                    <span>@Model.Invoice.DeductionRemarks</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style=" width: 20% ">
+                                    Credit Note Amount :
+                                </td>
+                                <td>
+                                    <span>@Model.Invoice.CreditNoteAmount</span>
+                                </td>
+                                <td>&nbsp;</td>
+                                <td style=" width: 20% ">
+                                    Subtotal Payable :
+                                </td>
+                                <td>
+                                    <span>@Model.Invoice.SubtotalPayable</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style=" width: 20% ">
+                                    Subtotal Deductions :
+                                </td>
+                                <td>
+                                    <span>@Model.Invoice.SubtotalDeductions</span>
+                                </td>
+                                <td>&nbsp;</td>
+                                <td style=" width: 20% ">
+                                    Less Credit Notes :
+                                </td>
+                                <td>
+                                    <span>@Model.Invoice.LessCreditNotes</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style=" width: 20% ">
+                                    Amount Payable :
+                                </td>
+                                <td>
+                                    <span>@Model.Invoice.AmountPayable</span>
+                                </td>
+                                <td>&nbsp;</td>
+                                <td style=" width: 20% ">
+                                    Recieved Date :
+                                </td>
+                                <td>
+                                    <span>@Model.Invoice.RecievedDate</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style=" width: 20% ">
+                                    Invoice Amount :
+                                </td>
+                                <td>
+                                    <span>@Model.Invoice.InvoiceAmount</span>
+                                </td>
+                                <td>&nbsp;</td>
+                                <td style=" width: 20% "></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </p>
+                <div id="container"></div>
+                <div class="panel-body tabs">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#jobs" data-toggle="tab" aria-expanded="true"><i class="fa fa-cubes"></i>&nbsp;Invoice Jobs</a></li>
+                        <li class=""><a href="#workflows" data-toggle="tab" aria-expanded="false"><i class="fa fa-sitemap"></i>&nbsp;Invoice Workflow</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade active in" id="jobs">
+                            <h4>Invoice Jobs</h4>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Job Number
+                                        </th>
+                                        <th>
+                                            PO
+                                        </th>
+                                        <th>
+                                            Element
+                                        </th>
+                                        <th>
+                                            Project
+                                        </th>
+                                        <th>
+                                            Site
+                                        </th>
+                                        <th>
+                                            Job Type
+                                        </th>
+                                        <th>
+                                            Task / Milestone
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var Job in Model.InvoiceJobs)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <a href="@Url.Action("JobsDetails", "Contracts", new { id = Job.JobId })#jobs">
+                                                    @Job.JobNumber
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="@Url.Action("POsDetails", "Contracts", new { id = Job.POId })">
+                                                    @Job.PONumber
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="@Url.Action("ElementDetails", "Contracts", new { id = Job.ElementId })">
+                                                    @Job.ElementName
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="@Url.Action("ProjectDetails", "Projects", new { id = Job.ProjectId })">
+                                                    @Job.ProjectName
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="@Url.Action("SitesDetails", "Contracts", new { id = Job.SiteIdNumber })">
+                                                    @Job.SiteName
+                                                </a>
+                                            </td>
+                                            <td>
+                                                @Job.JobTypeName
+                                            </td>
+                                            <td>
+                                                @*@Job.TaskName*@
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane fade" id="workflows">
+                            <h4>
+                                Invoice Workflow
+                            </h4>
+                            <br />
+                            <p>
+                                <table class="table table-striped datatable">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Invoice Number
+                                            </th>
+                                            <th>
+                                                Stage
+                                            </th>
+                                            <th>
+                                                Received date
+                                            </th>
+                                            <th>
+                                                Processed date
+                                            </th>
+                                            <th>
+                                                Owner name
+                                            </th>
+                                            <th>
+                                                Status
+                                            </th>
+                                            <th>
+                                                Notes
+                                            </th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var workflow in Model.InvoiceWorkflows)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @workflow.InvoiceNumber
+                                                </td>
+                                                <td>
+                                                    @workflow.StageName
+                                                </td>
+                                                <td>
+                                                    @workflow.ReceivedDateString
+                                                </td>
+                                                <td>
+                                                    @(workflow.ProcessedDate != null ? ((DateTime)workflow.ProcessedDate).ToShortDateString() : "")
+                                                </td>
+                                                <td>
+                                                    @workflow.OwnerName
+                                                </td>
+                                                <td>
+                                                    @workflow.StatusName
+                                                </td>
+                                                <td>
+                                                    @workflow.Remarks
+                                                </td>
+                                                <td>
+                                                    @*@if (!workflow.IsFinished)
+                                                    {
+                                                        <button class="btn btn-primary btn-xs" id="BtnApproveRejectWorkflow_@workflow.Id">
+                                                            <i class="fa fa-check-square"></i>
+                                                            Action
+                                                        </button>
+                                                    }*@
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*@section customScripts {
+    <script type="text/javascript" src="~/Scripts/App/POs/PODetails.jsx"></script>
+}*@

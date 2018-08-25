@@ -1,0 +1,65 @@
+﻿@using pmcs.Model.Contracts
+@model IEnumerable<AsBuilt>
+
+<table class="table table-striped datatable">
+    <thead>
+        <tr>
+            <th>
+                Job Number
+            </th>
+            <th>
+                CUL Id
+            </th>
+            <th>
+                Quantity
+            </th>
+            <th>
+                FOC
+            </th>
+            <th>
+                Payable
+            </th>
+            <th>
+                FOC Amount
+            </th>
+            <th>
+                Category
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var asBuilt in Model)
+        {
+            <tr>
+                <td>
+                    @asBuilt.JobId
+                </td>
+                <td>
+                    @asBuilt.CULName
+                </td>
+                <td>
+                    @asBuilt.Quantity
+                </td>
+                <td>
+                    @asBuilt.FOC
+                </td>
+                <td>
+                    @asBuilt.Payable
+                </td>
+                <td>
+                    @asBuilt.FOCAmount
+                </td>
+                <td>
+                    @asBuilt.Category
+                </td>
+                <td>
+                    <button class="btn btn-primary btn-xs" id="BtnEditAsBuilt_@asBuilt.Id">
+                        <i class="fa fa-refresh"></i>
+                        Edit AsBuilt
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

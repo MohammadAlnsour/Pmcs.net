@@ -1,0 +1,60 @@
+﻿@using pmcs.Model.Contracts;
+@model IEnumerable<Element>
+
+<table class="table table-striped datatable">
+    <thead>
+        <tr>
+            <th>
+                Element 1
+            </th>
+            <th>
+                Element 2
+            </th>
+            <th>
+                Description
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var Element in Model)
+        {
+            <tr>
+                <td>
+                    <a href="@Url.Action("ElementsDetails", "Contracts", new { id = Element.ElementId })#Elements">
+                        @Element.ElementName
+                    </a>
+                </td>
+                <td>
+                    <a href="@Url.Action("ElementsDetails", "Contracts", new { id = Element.ElementId })#Elements">
+                        @Element.ElementName2
+                    </a>
+                </td>
+                <td>
+                    @Element.Description
+                </td>
+                <td>
+                    <button class="btn btn-primary btn-xs" id="BtnEditElement_@Element.ElementId">
+                        <i class="fa fa-refresh"></i>
+                        Edit Element
+                    </button>
+                    &nbsp;
+                    <button class="btn btn-warning btn-xs" id="BtnJobs_@Element.ElementId">
+                        <i class="fa fa-cubes"></i>
+                        Element Jobs
+                    </button>
+                    &nbsp;
+                    <button class="btn btn-danger btn-xs" id="BtnBoQ_@Element.ElementId">
+                        <i class="fa fa-cubes"></i>
+                        BoQ
+                    </button>
+                    &nbsp;
+                    <button class="btn btn-success btn-xs" id="BtnDiscounts_@Element.ElementId">
+                        <i class="fa fa-cubes"></i>
+                        Element Discount
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

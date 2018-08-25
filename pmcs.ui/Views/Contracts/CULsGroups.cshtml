@@ -1,0 +1,85 @@
+﻿@using pmcs.Model.Contracts;
+@model IEnumerable<CULGroup>
+@{
+    ViewBag.Title = "PMCS v1.2 - CUL Groups ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <ol class="breadcrumb">
+        <li><a href="#"><em class="fa fa-home"></em></a></li>
+        <li>Contracts</li>
+        <li class="active">CUL Groups</li>
+    </ol>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">CUL Groups List</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default ">
+            <div class="panel-heading">
+                Manage CUL Groups List
+                <span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span>
+            </div>
+            <div class="panel-body timeline-container">
+                <div id="DivEditCULGroup"></div>
+                <div id="DivSearchCULGroup"></div>
+                <div id="DivAddCULGroup"></div>
+                <br />
+                <div id="DivCULGroupsList">
+                    <table class="table table-striped datatable">
+                        <thead>
+                            <tr>
+                                <td>
+                                    Id
+                                </td>
+                                <td>
+                                    Key
+                                </td>
+                                <td>
+                                    Description
+                                </td>
+                                <td>
+                                    Created Date
+                                </td>
+                                <td></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var CUL in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @CUL.CULGroupId
+                                    </td>
+                                    <td>
+                                        @CUL.Key
+                                    </td>
+                                    <td>
+                                        @CUL.Description
+                                    </td>
+                                    <td>
+                                        @CUL.CreatedDate.ToShortDateString()
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-primary btn-xs" id="BtnEditCULGroup_@CUL.CULGroupId">
+                                            <i class="fa fa-refresh"></i>
+                                            Edit CUL Group
+                                        </button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="HiddenCULGroupId" name="HiddenCULGroupId" />
+@section customScripts {
+    <script type="text/javascript" src="~/Scripts/App/CULs/CULGroupsList.jsx"></script>
+}

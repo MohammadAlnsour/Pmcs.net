@@ -1,0 +1,100 @@
+﻿@using pmcs.Model.Contracts;
+@model IEnumerable<Element>
+@{
+    ViewBag.Title = "PMCS v1.2 - Elements List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <ol class="breadcrumb">
+        <li><a href="#"><em class="fa fa-home"></em></a></li>
+        <li>Contracts</li>
+        <li class="active">Elements List</li>
+    </ol>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Elements List</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default ">
+            <div class="panel-heading">
+                Manage Elements List
+                <span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span>
+            </div>
+            <div class="panel-body timeline-container">
+                <div id="DivEditEntity"></div>
+                <div id="DivSearchEntity"></div>
+                <div id="DivAddEntity"></div>
+                <br />
+                <div id="DivEntityList">
+                    <table class="table table-striped datatable">
+                        <thead>
+                            <tr>
+                                <td>
+                                    Element 1
+                                </td>
+                                <td>
+                                    Element 2
+                                </td>
+                                <td>
+                                    Description
+                                </td>
+                                <td></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var Element in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <a href="@Url.Action("ElementDetails", "Contracts", new { id = Element.ElementId })#Elements">
+                                            @Element.ElementName
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="@Url.Action("ElementDetails", "Contracts", new { id = Element.ElementId })#Elements">
+                                            @Element.ElementName2
+                                        </a>
+                                    </td>
+                                    <td>
+                                        @Element.Description
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-primary btn-xs" id="BtnEditElement_@Element.ElementId">
+                                            <i class="fa fa-refresh"></i>
+                                            Edit Element
+                                        </button>
+                                        &nbsp;
+                                        <button class="btn btn-warning btn-xs" id="BtnJobs_@Element.ElementId">
+                                            <i class="fa fa-cubes"></i>
+                                            Element Jobs
+                                        </button>
+                                        &nbsp;
+                                        <button class="btn btn-danger btn-xs" id="BtnBoQ_@Element.ElementId">
+                                            <i class="fa fa-cubes"></i>
+                                            BoQ
+                                        </button>
+                                        &nbsp;
+                                        <button class="btn btn-success btn-xs" id="BtnDiscounts_@Element.ElementId">
+                                            <i class="fa fa-cubes"></i>
+                                            Element Discount
+                                        </button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="HiddenId" name="HiddenId" />
+@section customScripts {
+    <script type="text/javascript" src="~/Scripts/App/Elements/AddElement.jsx"></script>
+    <script type="text/javascript" src="~/Scripts/App/Elements/EditElement.jsx"></script>
+    <script type="text/javascript" src="~/Scripts/App/Elements/SearchElements.jsx"></script>
+}

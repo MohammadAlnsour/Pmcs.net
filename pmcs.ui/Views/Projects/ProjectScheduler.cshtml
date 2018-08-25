@@ -1,0 +1,97 @@
+﻿@using pmcs.Model.Contracts
+@model IEnumerable<Project>
+@{
+    ViewBag.Title = "PMCS v1.2 - Projects Scheduler";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section CustomStyles {
+    <link href="~/Contents/css/dhtmlxgantt_material.css" rel="stylesheet" />
+}
+
+<div class="row">
+    <ol class="breadcrumb">
+        <li><a href="#"><em class="fa fa-home"></em></a></li>
+        <li>Projects Management</li>
+        <li class="active">Projects Scheduler</li>
+    </ol>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Projects Scheduler And Tasks</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default ">
+            <div class="panel-heading">
+                Projects
+                <span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span>
+            </div>
+            <div class="panel-body timeline-container">
+                <ul class="timeline timeline-horizontal">
+                    <li class="timeline-item">
+                        <div class="timeline-badge"><i class="glyphicon glyphicon-check"></i></div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4 class="timeline-title"><a href="@Url.Action("ManageProjects","Projects")">Step 1 : Create Project</a></h4>
+                            </div>
+                            <div class="timeline-body">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="timeline-item">
+                        <div class="timeline-badge success"><i class="glyphicon glyphicon-check"></i></div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4 class="timeline-title">Step 2 : Schedule Tasks</h4>
+                            </div>
+                            <div class="timeline-body">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="timeline-item">
+                        <div class="timeline-badge"><i class="glyphicon glyphicon-check"></i></div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4 class="timeline-title"><a href="@Url.Action("ProjectsStatus","Projects")">Step 3 : Tasks Status</a></h4>
+                            </div>
+                            <div class="timeline-body">
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="col-md-12">
+                    <div style="width:100%; height:100%; border: 1px solid #DDDDDD;">
+                        <table className="table" style="width:100%;">
+                            <tbody>
+                                <tr>
+                                    <td style="width:15%">&nbsp; Select Project :</td>
+                                    <td>
+                                        <select id="SelectProjectId" name="SelectProjectId" style="width:100%" class="selectpicker" data-live-search="true" data-live-search-placeholder="Search">
+                                            <option value="">Select a project</option>
+                                            @foreach (var project in Model)
+                                            {
+                                                <option value="@project.ProjectId">@project.ProjectName</option>
+                                            }
+                                        </select>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br />
+                    @*<br />*@
+                    <div id="divGanttScheduler" style="width:100%; height:100%; border: 1px solid #DDDDDD;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="HiddenGanttRendered" />
+
+@System.Web.Optimization.Scripts.Render("~/bundles/dhtmlxgantt")
+@section customScripts {
+    <script type="text/javascript" src="/Scripts/App/ProjectManagement/ProjectsScheduler.jsx"></script>
+}

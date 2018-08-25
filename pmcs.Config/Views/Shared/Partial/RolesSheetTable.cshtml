@@ -1,0 +1,82 @@
+﻿@using pmcs.Model
+@model Dictionary<SystemRole, Dictionary<SystemModule, List<RolesModulesMapping>>>
+
+
+<table class="table table-striped table-expandable">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var role in Model)
+        {
+            <tr>
+                <td>@role.Key.RoleId</td>
+                <td>
+                    <div>
+                        <label id="lblRoleNamerole_@role.Key.RoleId">
+                            @role.Key.RoleName
+                        </label>&nbsp;
+                        <a class="btn btn-primary btn-xs" onClick="refreshRole.bind(@role.Key.RoleId, @role.Key.RoleName)">
+                            <i class="ti-reload"></i>
+                        </a>
+                    </div>
+                    <div id="editDiv_@role.Key.RoleId" style="display: none;">
+                        <table>
+                            <tr>
+                                <td style="border-top:0px "><input type="text" id="roleText_@role.Key.RoleId" class="form-control border-input" style="width:150px" /></td>
+                                <td style="border-top:0px "><button class="btn btn-info btn-xs" title="save changes" onClick="editRole(@role.Key.RoleId)"><i class="ti-check"></i></button></td>
+                                <td style="border-top:0px "> <button class="btn btn-danger btn-xs" title="close without saving" onClick="closeEdit(@role.Key.RoleId)"><i class="ti-close"></i></button></td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colSpan="5">
+                    @foreach (var val in role.Value)
+                    {
+                        <table class="table table-striped table-xs">
+                            <thead>
+                                <tr>
+                                    <th>@val.Key.ModuleName</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <table style="width:60%" class="table table-striped table-xs">
+                                            <thead>
+                                                <tr>
+                                                    <th>View Name</th>
+                                                    <th>Read</th>
+                                                    <th>Write</th>
+                                                    <th>Delete</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var view in val.Value)
+                                                {
+                                                    <tr>
+                                                        <td width="30%">@view.ViewName</td>
+                                                        <td><input type="checkbox" id="read_@view.MappingId" name="@view.MappingId" checked="@view.CanRead" /></td>
+                                                        <td><input type="checkbox" id="write_@view.MappingId" name="@view.MappingId" checked="@view.CanWrite" /></td>
+                                                        <td><input type="checkbox" id="delete_@view.MappingId" name="@view.MappingId" checked="@view.CanDelete" /></td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    }
+                    <button id="btnSaveRoleSheet_@role.Key.RoleId" class="btn btn-primary btn-fill">Save Permissions</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

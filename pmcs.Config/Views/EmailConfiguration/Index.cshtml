@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "System Email Configuration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="header">
+                    <h4 class="title">System Email Configuration</h4>
+                    <p class="category">You can configure and control the email server, account settings and emails notifications templates</p>
+                </div>
+                <div id="Maincontentcontainer" class="content">
+
+                    @*<select className="form-control" id="SelectEnableSSL" name="SelectEnableSSL">
+                            <option value="false">No</option>
+                            <option value="true">Yes</option>
+                        </select>*@
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="hiddenLookupTable" />
+
+@section customScripts {
+    <script type="text/javascript" src="@Url.Content("~/Scripts/App/EmailConfiguration.jsx")"></script>
+}

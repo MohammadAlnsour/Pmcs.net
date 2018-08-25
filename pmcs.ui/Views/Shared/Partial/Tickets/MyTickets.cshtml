@@ -1,0 +1,130 @@
+﻿@model IEnumerable<pmcs.Model.Tickets.Ticket>
+
+<table class="table table-striped datatable">
+    <thead>
+        <tr>
+            <td>
+                Module
+            </td>
+            <td>
+                Ticket Subject
+            </td>
+            <td>
+                Severity
+            </td>
+            <td>
+                Status
+            </td>
+            <td>
+                Assigned To
+            </td>
+            <td>
+                Sender
+            </td>
+            <td>
+                Sent Date
+            </td>
+            <td>
+                Completed Date
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ticket in Model)
+        {
+            <tr>
+                <td>
+                    @ticket.ModuleName
+                </td>
+                <td>
+                    @ticket.TicketSubject
+                </td>
+                <td>
+                    @if (ticket.SeverityId == 1)
+                    {
+                        <label class="alert bg-info" style="padding:2px 8px 2px 8px">
+                            @ticket.Severity
+                        </label>
+                    }
+                    else if (ticket.SeverityId == 2)
+                    {
+                        <label class="alert bg-info" style="padding:2px 8px 2px 8px">
+                            @ticket.Severity
+                        </label>
+                    }
+                    else if (ticket.SeverityId == 3)
+                    {
+                        <label class="alert bg-warning" style="padding:2px 8px 2px 8px">
+                            @ticket.Severity
+                        </label>
+                    }
+                    else if (ticket.SeverityId == 4)
+                    {
+                        <label class="alert bg-danger" style="padding:2px 8px 2px 8px">
+                            @ticket.Severity
+                        </label>
+                    }
+                    else if (ticket.SeverityId == 5)
+                    {
+                        <label class="alert bg-danger" style="padding:2px 8px 2px 8px">
+                            @ticket.Severity
+                        </label>
+                    }
+                </td>
+                <td>
+                    @if (ticket.Status == 1)
+                    {
+                        <label class="alert bg-danger" style="padding:2px 8px 2px 8px">
+                            @ticket.StatusName
+                        </label>
+                    }
+                    else if (ticket.Status == 2)
+                    {
+                        <label class="alert bg-info" style="padding:2px 8px 2px 8px">
+                            @ticket.StatusName
+                        </label>
+                    }
+                    else if (ticket.Status == 3)
+                    {
+                        <label class="alert bg-primary" style="padding:2px 8px 2px 8px">
+                            @ticket.StatusName
+                        </label>
+                    }
+                </td>
+                <td>
+                    @ticket.AssignedToName
+                </td>
+                <td>
+                    @ticket.OwnerName
+                </td>
+                <td>
+                    @ticket.CreatedDate.ToShortDateString()
+                </td>
+                <td>
+                    @(ticket.CompletedDate == null ? " - " : ((DateTime)ticket.CompletedDate).ToShortDateString())
+                </td>
+                <td>
+                    <button class="btn btn-primary btn-xs" id="BtnEditTicket_@ticket.TicketId">
+                        <i class="fa fa-refresh"></i>
+                        Edit
+                    </button>
+                </td>
+                <td>
+                    <button class="btn btn-warning btn-xs" id="BtnConversation_@ticket.TicketId">
+                        <i class="fa fa-comments"></i>
+                        View Conversation
+                    </button>
+                </td>
+                <td>
+                    <button class="btn btn-info btn-xs" id="BtnClose_@ticket.TicketId">
+                        <i class="fa fa-check-circle"></i>
+                        Close Ticket
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,72 @@
+﻿@model IEnumerable<pmcs.Model.Contracts.LeaseContract>
+
+<table class="table table-striped datatable">
+    <thead>
+        <tr>
+            <th>
+                Lease Contract Number
+            </th>
+            <th>
+                Site Owner
+            </th>
+            <th>
+                Total Lease Amount
+            </th>
+            <th>
+                Start Lease Date
+            </th>
+            <th>
+                End Lease Date
+            </th>
+            <th>
+                Number Of Payments
+            </th>
+            <th>
+                Amount Per Payment
+            </th>
+            <th>
+                Payment Frequency
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var contract in Model)
+        {
+            <tr>
+                <td>
+                    @*<a href="@Url.Action("", "")">*@
+                        @contract.LeaseContractNumber
+                    @*</a>*@
+                </td>
+                <td>
+                    @contract.SiteOwnerName
+                </td>
+                <td>
+                    @(contract.TotalLeaseAmount != null ? Math.Round(Convert.ToDouble(contract.TotalLeaseAmount), 3) : 0.0)
+                </td>
+                <td>
+                    @contract.LeaseStartDate.ToShortDateString()
+                </td>
+                <td>
+                    @contract.LeaseEndDate.ToShortDateString()
+                </td>
+                <td>
+                    @contract.NumberOfPayments
+                </td>
+                <td>
+                    @(contract.AmountPerPayment != null ? Math.Round(Convert.ToDouble(contract.AmountPerPayment), 3) : 0.0)
+                </td>
+                <td>
+                    @contract.PaymentFrequency
+                </td>
+                <td>
+                    <button class="btn btn-primary btn-xs" id="BtnEditContract_@contract.ContractId">
+                        <i class="fa fa-refresh"></i>
+                        Edit Lease Contract
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,253 @@
+﻿@using pmcs.Model.ViewModels
+@model ProjectDetailsViewModel
+@{
+    ViewBag.Title = "PMCS v1.2 - " + Model.ProjectDetails.ProjectName;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section CustomStyles {
+    <link href="~/Contents/css/dhtmlxgantt_material.css" rel="stylesheet" />
+}
+<div class="row">
+    <ol class="breadcrumb">
+        <li><a href="@Url.Action("Dashboard","Dashboards")"><em class="fa fa-home"></em></a></li>
+        <li>Projects Management</li>
+        <li><a href="@Url.Action("ManageProjects","Projects")">Projects List</a></li>
+        <li class="active">@Model.ProjectDetails.ProjectName</li>
+    </ol>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">@Model.ProjectDetails.ProjectName - Project details</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default ">
+            <div class="panel-heading">
+                @Model.ProjectDetails.ProjectName - Project details
+                <span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span>
+            </div>
+            <div class="panel-body">
+                <h4>Basic Project Details</h4>
+                <br />
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <td style="width:20%;">
+                                Project Name :
+                            </td>
+                            <td>
+                                @Model.ProjectDetails.ProjectName
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:20%;">
+                                Project Code :
+                            </td>
+                            <td>
+                                @Model.ProjectDetails.ProjectCode
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:20%;">
+                                Project Short Name :
+                            </td>
+                            <td>
+                                @Model.ProjectDetails.ProjectShortName
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:20%;">
+                                Site :
+                            </td>
+                            <td>
+                                @Model.ProjectDetails.SiteName
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:20%;">
+                                Created Date :
+                            </td>
+                            <td>
+                                @Model.ProjectDetails.CreatedDate.ToShortDateString()
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <input type="hidden" id="HiddenProjectId" value="@Model.ProjectDetails.ProjectId" />
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tasks" data-toggle="tab" aria-expanded="false"><i class="fa fa-tasks"></i> Project Tasks and Gantt</a></li>
+                    <li class=""><a href="#siteinfo" data-toggle="tab" aria-expanded="true"><i class="fa fa-map-marker "></i> Site Info</a></li>
+                    <li class=""><a href="#POs" data-toggle="tab" aria-expanded="false"><i class="fa fa-shopping-cart"></i> Purchase Orders</a></li>
+                    <li class=""><a href="#projCalendar" data-toggle="tab" aria-expanded="false"><i class="fa fa-calendar-check-o"></i> Project Calendar</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade active in" id="tasks">
+                        <h4>Project Tasks and Gantt</h4>
+                        <br />
+                        <div id="divGanttScheduler" style="width:100%; height:100%; border: 1px solid #DDDDDD;"></div>
+                    </div>
+                    <div class="tab-pane fade" id="siteinfo">
+                        <h4>Site info</h4>
+                        <br />
+                        <p>
+                            <div id="divSiteContainer" class="responsive-table">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <td>
+                                                Site Number
+                                            </td>
+                                            <td>
+                                                Site Name
+                                            </td>
+                                            <td>
+                                                Site Type
+                                            </td>
+                                            <td>
+                                                Site Owner
+                                            </td>
+                                            <td>
+                                                District
+                                            </td>
+                                            <td>
+                                                Governorate
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <a href="@Url.Action("SitesDetails", "Contracts", new { id = Model.ProjectSite.SiteId })">
+                                                    @Model.ProjectSite.SiteNumber
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="@Url.Action("SitesDetails", "Contracts", new { id = Model.ProjectSite.SiteId })">
+                                                    @Model.ProjectSite.SiteName
+                                                </a>
+                                            </td>
+                                            <td>
+                                                @Model.ProjectSite.SiteTypeName
+                                            </td>
+                                            <td>
+                                                @Model.ProjectSite.SiteOwnerName
+                                            </td>
+                                            <td>
+                                                @Model.ProjectSite.DistrictName
+                                            </td>
+                                            <td>
+                                                @Model.ProjectSite.GovernorateName
+                                            </td>
+                                            <td>
+                                                @*<button class="btn btn-primary" id="BtnEditSite_@Model.ProjectSite.SiteId">
+                                                        <i class="fa fa-refresh"></i>
+                                                        Edit Site
+                                                    </button>*@
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </p>
+                    </div>
+                    <div class="tab-pane fade" id="POs">
+                        <h4>Purchase Orders</h4>
+                        <br />
+                        <p>
+                            <div id="DivLeasePaymentpoContainer" class="responsive-table">
+                                <table class="table table-striped datatable">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                PO Number
+                                            </th>
+                                            <th>
+                                                PO Date
+                                            </th>
+                                            <th>
+                                                Contractor
+                                            </th>
+                                            <th>
+                                                CUL Group
+                                            </th>
+                                            <th>
+                                                FOC Gross
+                                            </th>
+                                            <th>
+                                                Implementation End Date
+                                            </th>
+                                            <th>
+                                                Payment Terms (Days)
+                                            </th>
+                                            <th>
+                                                Po Gross
+                                            </th>
+                                            <th>
+                                                Po Net
+                                            </th>
+                                            <th>
+                                                Remarks
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var po in Model.ProjectPOs)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @po.PONumber
+                                                </td>
+                                                <td>
+                                                    @(po.PODate != null ? po.PODate.Value.ToShortDateString() : "")
+                                                </td>
+                                                <td>
+                                                    @po.ContractorName
+                                                </td>
+                                                <td>
+                                                    @po.CULGroupName
+                                                </td>
+                                                <td>
+                                                    @po.FOCGross
+                                                </td>
+                                                <td>
+                                                    @(po.ImplementationEndDate != null ? po.ImplementationEndDate.Value.ToShortDateString() : "")
+                                                </td>
+                                                <td>
+                                                    @po.PaymentTermsDays
+                                                </td>
+                                                <td>
+                                                    @po.PoGross
+                                                </td>
+                                                <td>
+                                                    @po.PoNet
+                                                </td>
+                                                <td>
+                                                    @po.Remarks
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </p>
+                    </div>
+                    <div class="tab-pane fade" id="projCalendar">
+                        <h4>Project Calendar</h4>
+                        <br />
+                        <p>
+                            <div id="divProjectCalendar" class="responsive-table">
+                            </div>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@System.Web.Optimization.Scripts.Render("~/bundles/dhtmlxgantt")
+@section customScripts {
+    <script type="text/javascript" src="/Scripts/App/ProjectManagement/ProjectDetails.jsx"></script>
+}

@@ -1,0 +1,68 @@
+﻿@using pmcs.Model.Contracts;
+@model IEnumerable<InvoicesApprovalWorkflow>
+
+<table id="TableWorkflows" class="table table-striped datatable">
+    <thead>
+        <tr>
+            <th>
+                Invoice Number
+            </th>
+            <th>
+                Stage
+            </th>
+            <th>
+                Received date
+            </th>
+            <th>
+                Processed date
+            </th>
+            <th>
+                Owner name
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+                Notes
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var workflow in Model)
+        {
+            <tr>
+                <td>
+                    @workflow.InvoiceNumber
+                </td>
+                <td>
+                    @workflow.StageName
+                </td>
+                <td>
+                    @workflow.ReceivedDateString
+                </td>
+                <td>
+                    @(workflow.ProcessedDate != null ? ((DateTime)workflow.ProcessedDate).ToShortDateString() : "")
+                </td>
+                <td>
+                    @workflow.OwnerName
+                </td>
+                <td>
+                    @workflow.StatusName
+                </td>
+                <td>
+                    @workflow.Remarks
+                </td>
+                <td>
+                    @if (!workflow.IsFinished)
+                    {
+                        <button class="btn btn-primary btn-xs" id="BtnApproveRejectWorkflow_@workflow.Id">
+                            <i class="fa fa-check-square"></i>
+                            Action
+                        </button>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

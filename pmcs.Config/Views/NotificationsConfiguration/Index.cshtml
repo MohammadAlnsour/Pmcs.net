@@ -1,0 +1,56 @@
+﻿@model IEnumerable<pmcs.Model.Config.NotificationTypesModel>
+
+@{
+    ViewBag.Title = "Notifications Types Configuration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="header">
+                    <h4 class="title">Notifications Types Configuration</h4>
+                    <p class="category">You can configure and control the notifications types and the exact text for each notification type.</p>
+                </div>
+                <div class="content">
+                    <button id="BtnAddNotificationType" class="btn btn-info btn-fill"
+                            onclick="$('#addNotifiactionTypeDialog').show();">
+                        Add Notification Type
+                    </button>
+                    <div id="MainTableContainer">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Notification Type</th>
+                                    <th>Created Date</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var notification in Model)
+                                {
+                                    <tr>
+                                        <td>@notification.TypeId</td>
+                                        <td>@notification.NotificationTypeName</td>
+                                        <td>@notification.CreatedDate.ToShortDateString()</td>
+                                        <td>
+                                            <button class="btn btn-info btn-fill btn-xs" id="BtnEditText_@notification.TypeId"><i class="ti-reload"></i> &nbsp;Edit Notification Text</button>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="Maincontentcontainer"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="hiddenLookupTable" />
+
+@section customScripts {
+    <script type="text/javascript" src="@Url.Content("~/Scripts/App/NotificationTypes.jsx")"></script>
+}

@@ -1,0 +1,84 @@
+﻿@using pmcs.Model.ViewModels;
+@model IEnumerable<JobsListViewModel>
+<table class="table table-striped datatable">
+    <thead>
+        <tr>
+            <th>
+                Job Number
+            </th>
+            <th>
+                Purchase Order
+            </th>
+            <th>
+                Element
+            </th>
+            <th>
+                Project
+            </th>
+            <th>
+                Site
+            </th>
+            <th>
+                Job Type
+            </th>
+            <th>
+                Task / Milestone
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var Job in Model)
+        {
+            <tr>
+                <td>
+                    <a href="@Url.Action("JobsDetails", "Contracts", new { id = Job.JobId })#jobs">
+                        @Job.JobNumber
+                    </a>
+                </td>
+                <td>
+                    <a href="@Url.Action("POsDetails", "Contracts", new { id = Job.POId })">
+                        @Job.PONumber
+                    </a>
+                </td>
+                <td>
+                    <a href="@Url.Action("ElementDetails", "Contracts", new { id = Job.ElementId })">
+                        @Job.ElementName
+                    </a>
+                </td>
+                <td>
+                    <a href="@Url.Action("ProjectDetails", "Projects", new { id = Job.ProjectId })">
+                        @Job.ProjectName
+                    </a>
+                </td>
+                <td>
+                    <a href="@Url.Action("SitesDetails", "Contracts", new { id = Job.SiteIdNumber })">
+                        @Job.SiteName
+                    </a>
+                </td>
+                @*<td>
+                        @(Job.FOC == true ? "Yes" : "No")
+                    </td>*@
+                <td>
+                    @Job.JobTypeName
+                </td>
+                <td>
+                    @Job.TaskName
+                </td>
+                <td>
+                    <button class="btn btn-primary btn-xs" id="BtnEditJob_@Job.JobId">
+                        <i class="fa fa-refresh"></i>
+                        Edit Job
+                    </button>
+                </td>
+                <td>
+                    <button class="btn btn-success btn-xs" id="BtnShowOILs_@Job.JobId">
+                        <i class="fa fa-info-circle"></i>
+                        Details
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,62 @@
+﻿@model Exception
+@{
+    ViewBag.Title = "Ops! Error occured";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default ">
+            <div class="panel-heading">
+                500 Error Page
+            </div>
+            <div class="panel-body timeline-container">
+                <div class="error-page">
+                    <div class="">
+                        <h3><i class="fa fa-warning text-yellow"></i> An exception happened, please see the exception details bellow.</h3>
+                        <form action="#" method="post" class="search-form">
+                            <div class="input-group">
+                                <input type="text" name="search" class="form-control" placeholder="Search" required="">
+
+                                <div class="input-group-btn">
+                                    <button type="submit" name="submit" class="btn btn-warning btn-flat">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <br />
+                    <p>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Exception</th>
+                                    <th>Message</th>
+                                    <th>StackTrace</th>
+                                    <th>Inner Exception</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        @Model.GetType().Name
+                                    </td>
+                                    <td>
+                                        @Model.Message
+                                    </td>
+                                    <td>
+                                        @Model.StackTrace
+                                    </td>
+                                    <td>
+                                        @Model.InnerException
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

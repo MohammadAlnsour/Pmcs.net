@@ -1,0 +1,71 @@
+﻿@using pmcs.Model
+@model IEnumerable<pmcs.Models.UserAccountModel>
+
+
+@{
+    ViewBag.Title = "System Users Accounts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="card">
+            <div class="header">
+                <h4 class="title">System User Accounts</h4>
+                <p class="category">You can change and create the users accounts which are going to use the system.</p>
+            </div>
+            <div id="tableContainer" class="content table-responsive table-full-width">
+                <div id="divAddNewUser"></div>
+                <div id="tableOnlyContainer">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Username</th>
+                                <th>Email</th>
+                                <th>Mobile</th>
+                                <th>District</th>
+                                @*<th>Department</th>*@
+                                <th>Is Administrator</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var user in Model)
+                            {
+                                <tr>
+                                    <td>@user.UserId</td>
+                                    <td>@user.FullName</td>
+                                    <td>@user.UserName</td>
+                                    <td>@user.Email</td>
+                                    <td>@user.Mobile</td>
+                                    <td>@user.DistrictName</td>
+                                    @*<td>@user.Department</td>*@
+                                    <td>@(user.IsAdministrator == true ? "Yes" : "No" )</td>
+                                    <td>
+                                        <button id="btnEditUser_@user.UserId" class="btn btn-primary btn-fill btn-xs"><i class="ti-reload"></i> Edit</button>
+                                        <button id="btnDetailsUser_@user.UserId" class="btn btn-success btn-fill btn-xs"><i class="ti-eye"></i> Details</button>
+                                        @if (user.IsActive)
+                                        {
+                                            <button id="btnDisableUser_@user.UserId" class="btn btn-danger btn-fill btn-xs"><i class="ti-arrow-down"></i> Disable</button>
+                                        }
+                                        else
+                                        {
+                                            <button id="btnEnableUser_@user.UserId" class="btn btn-warning btn-fill btn-xs"><i class="ti-arrow-up"></i> Enable</button>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <input type="hidden" id="hiddenUserId" name="hiddenUserId" />
+                <input type="hidden" id="hiddenOperationType" name="hiddenOperationType" />
+            </div>
+        </div>
+    </div>
+</div>
+
+@section customScripts {
+    <script type="text/javascript" src="@Url.Content("~/Scripts/App/UsersAccounts.jsx")"></script>
+}

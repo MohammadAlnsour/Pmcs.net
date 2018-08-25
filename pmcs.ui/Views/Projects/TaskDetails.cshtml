@@ -1,0 +1,286 @@
+﻿@using pmcs.Model.ViewModels
+@model TaskViewModel
+@{
+    ViewBag.Title = "PMCS v1.2 - " + Model.Task.TaskName;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <ol class="breadcrumb">
+        <li><a href="@Url.Action("Dashboard","Dashboards")"><em class="fa fa-home"></em></a></li>
+        <li>Projects Management</li>
+        <li><a href="@Url.Action("ManageProjects","Projects")">Projects List</a></li>
+        <li class="active">@Model.Task.TaskName</li>
+    </ol>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">@Model.Task.TaskName - Task(Milestone) details</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default ">
+            <div class="panel-heading">
+                @Model.Task.TaskName - Task(Milestone) details
+                <span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span>
+            </div>
+            <div class="panel-body">
+                <h4>Basic Task Details</h4>
+                <br />
+
+                <table class="table" style="width: 100%">
+                    <tbody>
+                        <tr>
+                            <td style="width: 20%">
+                                Task Name :
+                            </td>
+                            <td>
+                                @Model.Task.TaskName
+                            </td>
+                            <td>&nbsp;</td>
+                            <td style="width: 20%">
+                                Project :
+                            </td>
+                            <td>
+                                <a href="@Url.Action("ProjectDetails","Project", new { id = Model.Project.ProjectId })">
+                                    @Model.Project.ProjectName
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 20%">
+                                Parent Task :
+                            </td>
+                            <td>
+                                @(Model.Task.ParentTaskId != null ? Model.Task.ParentTaskName : "-")
+                            </td>
+                            <td>&nbsp;</td>
+                            <td style="width: 20%">
+                                Is MileStone :
+                            </td>
+                            <td>
+                                @((bool)Model.Task.IsMileStone ? "Yes" : "No")
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 20%">
+                                Planned Start Date :
+                            </td>
+                            <td>
+                                @Model.Task.PlanStartDateString
+                            </td>
+                            <td>&nbsp;</td>
+                            <td style="width: 20%">
+                                Planned End Date :
+                            </td>
+                            <td>
+                                @Model.Task.PlanEndDateString
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 20%">
+                                Actual Start Date :
+                            </td>
+                            <td>
+                                @Model.Task.ActualStartDateString
+                            </td>
+                            <td>&nbsp;</td>
+                            <td style="width: 20%">
+                                Actual End Date :
+                            </td>
+                            <td>
+                                @Model.Task.ActualEndDateString
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 20%">
+                                Task Status :
+                            </td>
+                            <td>
+                                @if (Model.Task.TaskStatus == 1)
+                                {
+                                    <img src='/Contents/img/if_status-busy_46252.png' />
+                                }
+                                else
+                                {
+                                    <img src='/Contents/img/if_status_46254.png' />
+                                }
+                                @Model.Task.StatusName
+                            </td>
+                            <td>&nbsp;</td>
+                            <td style="width: 20%">
+                                Task Duration :
+                            </td>
+                            <td>
+                                @Model.Task.TaskDuration Days
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 20%">
+                                Completion Percentage :
+                            </td>
+                            <td>
+                                @(Model.Task.CompletionPercentage * 100) %
+                            </td>
+                            <td>&nbsp;</td>
+                            <td style="width: 20%"></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <input type="hidden" id="HiddenProjectId" value="@Model.Project.ProjectId" />
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#Project" data-toggle="tab" aria-expanded="false"><i class="fa fa-cubes"></i> Project info</a></li>
+                    <li class=""><a href="#site" data-toggle="tab" aria-expanded="true"><i class="fa fa-map-marker "></i> Site Info</a></li>
+                    <li class=""><a href="#related" data-toggle="tab" aria-expanded="false"><i class="fa fa-random"></i> Related items</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade active in" id="Project">
+                        <h4>Project Info</h4>
+                        <br />
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <td>
+                                        Project Code
+                                    </td>
+                                    <td>
+                                        Project Name
+                                    </td>
+                                    <td>
+                                        Short Name
+                                    </td>
+                                    <td>
+                                        Site Name
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <a href="@Url.Action("ProjectDetails", "Projects", new { id = Model.Project.ProjectId })">
+                                            @Model.Project.ProjectCode
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="@Url.Action("ProjectDetails", "Projects", new { id = Model.Project.ProjectId })">
+                                            @Model.Project.ProjectName
+                                        </a>
+                                    </td>
+                                    <td>
+                                        @Model.Project.ProjectShortName
+                                    </td>
+                                    <td>
+                                        @Model.Project.SiteName
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="site">
+                        <h4>Site Info</h4>
+                        <br />
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <td>
+                                        Site Number
+                                    </td>
+                                    <td>
+                                        Site Name
+                                    </td>
+                                    <td>
+                                        Site Type
+                                    </td>
+                                    <td>
+                                        Site Owner
+                                    </td>
+                                    <td>
+                                        District
+                                    </td>
+                                    <td>
+                                        Governorate
+                                    </td>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr>
+                                    <td>
+                                        <a href="@Url.Action("SitesDetails", "Contracts", new { id = Model.Site.SiteId })">
+                                            @Model.Site.SiteNumber
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="@Url.Action("SitesDetails", "Contracts", new { id = Model.Site.SiteId })">
+                                            @Model.Site.SiteName
+                                        </a>
+                                    </td>
+                                    <td>
+                                        @Model.Site.SiteTypeName
+                                    </td>
+                                    <td>
+                                        @Model.Site.SiteOwnerName
+                                    </td>
+                                    <td>
+                                        @Model.Site.DistrictName
+                                    </td>
+                                    <td>
+                                        @Model.Site.GovernorateName
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="related">
+                        <h4>Related items</h4>
+                        <br />
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <td>
+                                        ID
+                                    </td>
+                                    <td>
+                                        Number
+                                    </td>
+                                    <td>
+                                        Type
+                                    </td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var obj in Model.RelatedEntities)
+                                {
+                                    <tr>
+                                        <td>
+                                            <a href="@obj.URL">
+                                                @obj.ID
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="@obj.URL">
+                                                @obj.EntityNumber
+                                            </a>
+                                        </td>
+                                        <td>
+                                            @obj.EntityType
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*@System.Web.Optimization.Scripts.Render("~/bundles/dhtmlxgantt")*@
+@*@section customScripts {
+        <script type="text/javascript" src="/Scripts/App/ProjectManagement/ProjectDetails.jsx"></script>
+    }*@
